@@ -1,5 +1,7 @@
 import React from "react"
 
+import Container from "../componets/container.js"
+
 // export default class About extends React.Component {
 //   render () {
 //     return <div>About page</div>
@@ -7,5 +9,5 @@ import React from "react"
 // }
 
 export default function About() {
-  return <div>About page.</div>
+  return <Container>About page.</Container>
 }
