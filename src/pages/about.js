@@ -1,6 +1,6 @@
 import React from "react"
 
-import Container from "../componets/container.js"
+import Container from "../components/container.js"
 
 // export default class About extends React.Component {
 //   render () {
