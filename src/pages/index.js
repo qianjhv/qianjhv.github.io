@@ -3,7 +3,7 @@ import { Link, graphql } from "gatsby"
 
 import Layout from "../components/layout.js"
 
-export default function Home({data }) {
+export default function Home({ data }) {
   return (
     <Layout>
       <div>
