@@ -8,9 +8,9 @@ export default function Home({ data }) {
     <Layout>
       <div>
         <h4>{ data.allMarkdownRemark.totalCount } Posts</h4>
-        {data.allMarkdownRemark.edges.map(({ node }) => (
+        { data.allMarkdownRemark.edges.map(({ node }) => (
           <div key={node.id}>
-            <Link to={node.fields.slug} style={{ textDecoration: `none`, color: `inherit`}} >
+            <Link to={node.fields.slug} style={{ textDecoration: `none`, color: `inherit` }} >
               <h3 style={{ marginBottom: `20px` }} >
                 { node.frontmatter.title }{ " " }
                 <span style={{ color: `#bbb` }} >
