@@ -1,5 +1,5 @@
 {
-  "name": "qianjh.me",
+  "name": "i.k.b",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
@@ -8,5 +8,5 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "Simple Blog!"
 }
