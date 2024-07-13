@@ -1,0 +1,15 @@
+---
+import type { CollectionEntry } from "astro:content";
+import Blog from "./Blog.astro";
+
+type Props = {
+    essays: CollectionEntry<'essays'>[];
+}
+
+const { essays } = Astro.props;
+console.log(essays)
+---
+
+<div>
+    { essays.map((essay) => <Blog essay={essay} />) }
+</div>
