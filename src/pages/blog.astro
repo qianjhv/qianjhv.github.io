@@ -1,0 +1,23 @@
+---
+import { getCollection } from "astro:content"
+import BlogLists from "../components/BlogLists.astro"
+
+const essays = await getCollection("essays")
+console.log(essays)
+
+const pageTitle = "Blog"
+---
+
+<html lang = "en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width" />
+    <title>{pageTitle}</title>
+  </head>
+  <body>
+
+    <BlogLists essays={essays}/>
+
+
+  </body>
+</html>

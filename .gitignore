@@ -19,4 +19,6 @@ pnpm-debug.log*
 .DS_Store
 
 # generated types
-.astro/
+
+
+.astro/\n.astro
