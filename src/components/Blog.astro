@@ -2,14 +2,14 @@
 import { getEntryBySlug, type CollectionEntry } from "astro:content"
 
 type Props = {
-    essays: CollectionEntry<'essays'>[]
+    essays: CollectionEntry<'blogs'>[]
 }
 
-const { essay } = Astro.props
+const { blog } = Astro.props
 
 ---
 
 <article>
     <!-- /essay/ 注意这里的路径对应关系-->
-    <a href={`/essay/${essay.slug}`}>blog</a>
+    <a href={`/blog/${blog.slug}`}>blog</a>
 </article>

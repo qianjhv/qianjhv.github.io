@@ -2,23 +2,12 @@
 console.log(`Don't waste too much time to design, you are not a designer!`);
 console.log(`Just keep minimalism`);
 
-const pageTitle = "Homepage";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
 ---
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-	<title>{pageTitle}</title>
-</head>
-<body>
-  <!--max-width: 768px -->
-  <h1 class="text-center">Welcome to Jeffery's homepage!</h1>
+<BaseLayout pageTitle="Home" class="container max-w-screen-md mx-auto p-2">
+  <h1>Halo!</h1>
   <a href="/blog">blogpage</a>
-
-</body>
-</html>
+</BaseLayout>
 

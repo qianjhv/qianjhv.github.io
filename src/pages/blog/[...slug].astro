@@ -4,7 +4,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 
 export async function getStaticPaths() {
 
-  const essays = await getCollection('essays');
+  const essays = await getCollection('blogs');
 
   return essays.map(essay => ({
     params: { slug: essay.slug },
