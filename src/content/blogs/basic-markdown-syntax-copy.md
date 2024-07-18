@@ -1,6 +1,6 @@
 ---
 author: "jh"
-title: "Basic Markdown Syntax"
+title: "Basic Markdown Syntax..........................................................~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 pubDate: "2024-07-13"
 description: "test basic markdown syntax "
 image:

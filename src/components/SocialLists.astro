@@ -1,0 +1,31 @@
+---
+// Use `astro-icon` and Iconify Icon Sets Material Design Icons(mdi)
+// https://icones.js.org/collection/mdi
+import { Icon } from 'astro-icon/components'
+
+const socialLinks: {
+	link: string;
+	name: string;
+}[] = [
+	{
+		link: "https://github.com/qianjhv",
+		name: "mdi:github-box",
+	},
+]
+
+---
+
+<div class="flex text-gray-400 mt-6">
+	<span class="pr-2">Find me on:</span>
+	<ul>
+		{
+			socialLinks.map(({ link, name }) => (
+				<li class="inline-block align-text-bottom hover:text-gray-800">
+					<a href={link} target="_self">
+						<Icon aria-hidden="true" class="w-5 h-5" focusable="false" name={name} />
+					</a>
+				</li>
+			))
+		}
+	</ul>
+</div>
