@@ -1,6 +1,5 @@
 ---
 import type { CollectionEntry } from "astro:content";
-import Blog from "./Blog.astro";
 
 type Props = {
     blogs: CollectionEntry<'blogs'>[];
@@ -9,6 +8,11 @@ type Props = {
 const { blogs } = Astro.props;
 ---
 
-<div>
-    { blogs.map((blog) => <Blog blog={blog} />) }
-</div>
+<ul>
+    { blogs.map((blog) => 
+        <li class="py-2 truncate">
+            <time class="text-sm text-gray-300 pr-4">{blog.data.pubDate}</time>
+            <a href={`/blog/${blog.slug}`} class="text-gray-500 underline decoration-gray-500 hover:text-gray-900 hover:text-gray-900">{blog.data.title}</a>
+        </li>) 
+    }
+</ul>
