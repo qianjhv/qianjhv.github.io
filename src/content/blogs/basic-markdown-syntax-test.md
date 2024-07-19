@@ -56,7 +56,7 @@ What this looks like ::Hello::
 3. Third item
     1. Indented item
     2. Indented item
-4. Fourth item 
+4. Fourth item
 
 - First item
 - Second item
@@ -65,9 +65,10 @@ What this looks like ::Hello::
     - Indented item
 - Fourth item 
 
-- [x] Write the press release
-- [ ] Update the website
-- [ ] Contact the media
+* [X] use diffenernt symbol(*/-) to get a newline task list
+* [ ] Write the press release
+* [ ] Update the website
+* [ ] Contact the media
 
 `Use `code` in your Markdown file.`
 
@@ -76,6 +77,16 @@ What this looks like ::Hello::
   "firstName": "John",
   "lastName": "Smith",
   "age": 25
+}
+```
+
+```c++
+#include <iostream>
+
+int main(void) {
+    cout << "Hello World" <<endl;
+
+    return 0;
 }
 ```
 

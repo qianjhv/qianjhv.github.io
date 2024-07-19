@@ -1,8 +1,5 @@
 ---
 import { Icon } from 'astro-icon/components'
-import BaseLayout from './BaseLayout.astro'
-
-const { pageTitle } = Astro.props
 
 
 ---
@@ -14,8 +11,9 @@ const { pageTitle } = Astro.props
         </a>
     </header>
     <main>
+        <!-- prose max-w-none prose-img:rounded-xl prose-a:text-kleinblue -->
         <article 
-            class="prose prose-gray max-w-none prose-img:rounded-xl prose-headings:underline prose-a:text-kleinblue prose-pre:bg-white"
+            class="prose max-w-none prose-img:rounded-xl prose-a:text-kleinblue"
         >
             <slot />
         </article>
