@@ -1,6 +1,5 @@
 /** @type {import('tailwindcss').Config} */
 
-import defaultTheme from 'tailwindcss/defaultTheme'
 
 export default {
 	content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
@@ -16,7 +15,25 @@ export default {
 					DEFAULT: '#002FA7',
 					500: '#1E40AF',
 				}
-			}
+			},
+			typography: (theme) => ({
+				DEFAULT: {
+					css: {
+						ol: {
+							ol: { margin: 0, }
+						},
+						ul: {
+							ul: { margin: 0, },
+							p: { margin: 0 }
+						},
+						li: {
+							margin: 0,
+						},
+
+					}
+				}
+			})
+
 		},
 	},
 }

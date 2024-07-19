@@ -1,20 +1,23 @@
 ---
 import { Icon } from 'astro-icon/components'
-import BaseLayout from './BaseLayout.astro'
-
-const { pageTitle } = Astro.props
 
 
 ---
 
-<BaseLayout pageTitle={pageTitle} class="container md:max-w-3xl mx-auto px-4 font-sans">
+<div class="container md:max-w-3xl mx-auto px-2 font-sans">
     <header>
         <a href="./" target="_self">
             <Icon aria-hidden="true" class="w-6 h-6 text-gray-400" focusable="false" name="mdi:arrow-left" />
         </a>
     </header>
-    <main class="prose">
-        <slot />
+    <main>
+        <!-- prose max-w-none prose-img:rounded-xl prose-a:text-kleinblue -->
+        <article 
+            class="prose max-w-none prose-img:rounded-xl prose-a:text-kleinblue"
+        >
+            <slot />
+        </article>
     </main>
     <footer></footer>
-</BaseLayout>
+</div>
+
