@@ -32,6 +32,12 @@ Italicized text is the *cat's meow*.
 
 This text is ***really important***.
 
+This is inline code here `Hello`
+
+What this looks like :Hello:
+
+What this looks like ::Hello::
+
 > Dorothy followed her through many of the beautiful rooms in her castle.
 
 > Dorothy followed her through many of the beautiful rooms in her castle.
@@ -63,7 +69,7 @@ This text is ***really important***.
 - [ ] Update the website
 - [ ] Contact the media
 
-``Use `code` in your Markdown file.``
+`Use `code` in your Markdown file.`
 
 ```json
 {
