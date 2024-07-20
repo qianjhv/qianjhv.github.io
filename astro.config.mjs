@@ -9,11 +9,12 @@ export default defineConfig({
   markdown: {
     // gfm: false,
     shikiConfig: {
-      theme: 'one-dark-pro',
       themes: {
+        dark: 'one-dark-pro',
         light: 'one-light',
-        dark: 'one-dark-pro'
       },
+      defaultColor: 'false',
+      cssVariablePrefix: '--_s-',
     }
   },
 });

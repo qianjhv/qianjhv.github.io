@@ -18,7 +18,7 @@ const { blog } = Astro.props;
 const { Content } = await blog.render();
 ---
 
-<BaseLayout pageTitle={blog.data.title} linkHref="../favicon.ico" grayScale="bg-gray">
+<BaseLayout pageTitle={blog.data.title} linkHref="../favicon.ico">
   <MarkdownPostLayout>
     <Content />
   </MarkdownPostLayout>

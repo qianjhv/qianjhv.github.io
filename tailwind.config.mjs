@@ -14,7 +14,8 @@ export default {
 				'kleinblue': {
 					DEFAULT: '#002FA7',
 					500: '#1E40AF',
-				}
+				},
+				'middark': '#181818',
 			},
 			typography: (theme) => ({
 				DEFAULT: {

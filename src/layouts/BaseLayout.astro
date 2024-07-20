@@ -1,7 +1,9 @@
 ---
 import { ViewTransitions } from 'astro:transitions'
 
-const { class: className, pageTitle, linkHref, grayScale } = Astro.props
+import '../styles/global.css'
+
+const { class: className, pageTitle, linkHref } = Astro.props
 ---
 
 <!DOCTYPE html>
@@ -14,7 +16,7 @@ const { class: className, pageTitle, linkHref, grayScale } = Astro.props
     <title>{pageTitle}</title>
     <ViewTransitions />
 </head>
-<body class={grayScale}>
+<body class="dark:bg-middark">
 
     <div class={className}>
         <slot />
