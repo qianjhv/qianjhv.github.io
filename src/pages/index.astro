@@ -2,32 +2,29 @@
 console.log(`Don't waste too much time to design, you are not a designer!`);
 console.log(`Just keep minimalism`);
 
-import { getCollection } from "astro:content"
 
 import BaseLayout from "../layouts/BaseLayout.astro"
 import BlogLists from "../components/BlogLists.astro"
-import SocialLists from "../components/SocialLists.astro"
 
+import { getCollection } from "astro:content"
 
 const blogs = await getCollection("blogs")
 // console.log(blogs)
 
 ---
 
-<BaseLayout pageTitle="Home" hrefLink="favicon.ico" class="container md:max-w-3xl mx-auto px-4 pt-20 font-sans">
-  <p class="text-kleinblue text-2xl dark:text-zimablue">Halo!</p>
-  <p class="mt-2 text-2xl font-bold text-wrap sm:text-xl dark:text-gray-400">I'm Jeffery, welcome to my page.</p>
-  <SocialLists />
-
-  <div>
-    <h2 class="mt-14 mb-4 font-bold text-gray-500">Blogs:</h2>
-    <BlogLists blogs={blogs}/>
-  </div>
+<BaseLayout pageTitle="Home" hrefLink="favicon.ico">
 
   <div>
     <p class="mt-14 mb-4 font-bold text-gray-500">More</p>
     <p class="text-gray-200 dark:text-gray-500">Not done yet...</p>
   </div>
+
+
+  <div>
+    <BlogLists blogs={ blogs }/>
+  </div>
+
 
 </BaseLayout>
 

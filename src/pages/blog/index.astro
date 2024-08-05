@@ -1,0 +1,12 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro"
+import BlogLists from "../../components/BlogLists.astro"
+
+import { getCollection } from "astro:content"
+
+const blogs = await getCollection("blogs")
+---
+
+<BaseLayout pageTitle="blog" hrefLink="favicon.ico">
+    <BlogLists blogs={ blogs }/>
+</BaseLayout>

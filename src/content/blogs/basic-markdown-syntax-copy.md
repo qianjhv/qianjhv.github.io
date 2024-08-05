@@ -1,6 +1,6 @@
 ---
 author: "jh"
-title: "Basic Markdown Syntax Copy And long Title...............................................~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+title: "Basic Markdown Syntax Copy And loooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooong Title"
 pubDate: "2024-07-13"
 description: "test basic markdown syntax "
 image:
