@@ -26,13 +26,13 @@
     var(--shiki--dark, var(--shiki--dark))
 } */
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   .astro-code,
   .astro-code span {
     color: var(--shiki-dark) !important;
     background-color: var(--shiki-dark-bg) !important;
   }
-}
+} */
 
 html {
   background-color: #f1f5f9;
