@@ -1,10 +1,10 @@
-/* code highlight suggested solution but Astro dont support defaultColor setting now */
+/* code highlight suggested solution but Astro dont support defaultColor setting now
 /* https://github.com/antfu/shikiji/issues/6 */
 /* :root {
-  --shiki-theme:      var(--shiki--light);
+  --shiki-theme: var(--shiki--light);
 
-  --shiki--light:     var(--shiki-theme,);
-  --shiki--dark:      var(--shiki-theme,);
+  --shiki--light: var(--shiki-theme,);
+  --shiki--dark: var(--shiki-theme,);
 }
 [data-theme='light'] {
   --shiki-theme: var(--shiki--light);
@@ -21,7 +21,7 @@
 
 .astro-code,
 .astro-code span {
-  color:
+  color:  
     var(--shiki--light, var(--shiki--light))
     var(--shiki--dark, var(--shiki--dark))
 } */
@@ -32,4 +32,19 @@
     color: var(--shiki-dark) !important;
     background-color: var(--shiki-dark-bg) !important;
   }
+}
+
+html {
+  background-color: #f1f5f9;
+}
+
+html.dark {
+  background-color: #1E1E1E;
+  color: #fff;
+
+  .astro-code,
+    .astro-code span {
+      color: var(--shiki-dark) !important;
+      background-color: var(--shiki-dark-bg) !important;
+    }
 }
