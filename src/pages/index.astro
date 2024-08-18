@@ -1,10 +1,5 @@
 ---
-console.log(`Don't waste too much time to design, you are not a designer!`);
-console.log(`Just keep minimalism`);
-
-
 import BaseLayout from "../layouts/BaseLayout.astro"
-import BlogLists from "../components/BlogLists.astro"
 
 import { getCollection } from "astro:content"
 
@@ -16,15 +11,8 @@ const blogs = await getCollection("blogs")
 <BaseLayout pageTitle="Jeffery - Home" hrefLink="favicon.ico">
 
   <div class="mb-28">
-    <p class="font-bold">More</p>
-    <p>Not done yet...</p>
+    <p>There is nothing more visible than what is secret, and nothing more manifest than what is minute. Therefore the superior man is watchful over himself, when he is alone.</p>
   </div>
-
-
-  <div>
-    <BlogLists blogs={ blogs }/>
-  </div>
-
 
 </BaseLayout>
 
