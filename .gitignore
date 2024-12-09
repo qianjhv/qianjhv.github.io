@@ -2,6 +2,7 @@
 node_modules/
 
 .vscode/
+.next/
 
 # logs
 npm-debug.log*
