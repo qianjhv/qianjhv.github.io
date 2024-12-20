@@ -1,5 +1,9 @@
-import "@/styles/global.css";
+import Link from "next/link"
 
 export default function Page() {
-    return <h1>Halo!</h1>
+	return (
+		<Link href='/blog'>
+			<h1>Blog</h1>
+		</Link>
+	);
 }
