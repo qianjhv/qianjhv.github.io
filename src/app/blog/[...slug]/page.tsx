@@ -11,15 +11,26 @@ export const dynamicParams = false;
 
 // 
 export default async function BlogPost({ params }: { params: { slug: string | string[] } }) {
+
+  // 支持 .md 和 .mdx 文件
+  const possibleExtensions = ['.mdx', '.md'];
+  let filePath = '';
+
   const param = await params;
   const slugArray = Array.isArray(param.slug) ? param.slug : [param.slug]; // 处理 slug 为数组或字符串的情况
-  const filePath = path.join(process.cwd(), 'src/contents', ...slugArray) + '.mdx';
+  for (const ext of possibleExtensions) {
+    const potentialPath = path.join(process.cwd(), 'src/contents', ...slugArray) + ext;
+    if (fs.existsSync(potentialPath)) {
+      filePath = potentialPath;
+      break;
+    }
+  }
+
+  if (!filePath) {
+    return { notFound: true }; // 如果文件不存在
+  }
+
   const mdxContent = fs.readFileSync(filePath, 'utf-8');
-  // const source: MDXRemoteSerializeResult = await serialize(mdxContent);
-
-  // console.log(mdxContent);
-  // console.log(source);
-
   return (
     <MDXRemote source={mdxContent} />
   );
@@ -46,10 +57,10 @@ function getNestedMDXPaths(dir: string): { slug: string }[] {
 
     if (stats.isDirectory()) {
       paths = [...paths, ...getNestedMDXPaths(filePath)];
-    } else if (filePath.endsWith('.mdx')) {
+    } else if (filePath.endsWith('.mdx') || filePath.endsWith('.md')) {
       const slug = filePath
         .replace(process.cwd(), '')
-        .replace(/\.mdx$/, '')
+        .replace(/\.(md|mdx)$/, '') // 去掉扩展名
         .replace(/^\/src\/contents\//, '');
 
       paths.push({ slug });
