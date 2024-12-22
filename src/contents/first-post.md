@@ -1,4 +1,8 @@
-import Test from '@/components/test';
+---
+title: "Next.js 使用 Frontmatter"
+date: "2024-12-21"
+tags: ["Next.js", "Frontmatter", "教程"]
+---
 
 # First Post
 

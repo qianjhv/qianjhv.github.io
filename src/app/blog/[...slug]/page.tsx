@@ -3,6 +3,8 @@ import path from 'path';
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote/rsc';
 // import { serialize } from 'next-mdx-remote/serialize';
 
+import matter from "gray-matter";
+
 // 如果想要在 MDX 文件中，使用其它组件，需要在此处导入，并将其传递给 MDXRemote 
 // MDXRemote source={mdxContent} components={mdxComponents} />;
 
@@ -31,9 +33,48 @@ export default async function BlogPost({ params }: { params: { slug: string | st
   }
 
   const mdxContent = fs.readFileSync(filePath, 'utf-8');
+  const { data, content } = matter(mdxContent);
+
+  const stats = fs.statSync(filePath);
+  const lastModified = stats.mtime.toISOString(); // 文件的最后修改时间
+
+  // console.log(lastModified);
+
   return (
-    <MDXRemote source={mdxContent} />
+    <MDXRemote source={content} />
   );
+}
+
+//
+export async function generateMetadata({ params }: { params: { slug: string | string[] } }) {
+  const possibleExtensions = ['.mdx', '.md'];
+  let filePath = '';
+
+  const param = await params;
+  const slugArray = param.slug;
+  for (const ext of possibleExtensions) {
+    const potentialPath = path.join(process.cwd(), 'src/contents', ...slugArray) + ext;
+    if (fs.existsSync(potentialPath)) {
+      filePath = potentialPath;
+      break;
+    }
+  }
+
+  if (!filePath) {
+    return {
+      title: 'Not Found',
+      description: 'The requested blog post does not exist.',
+    }
+  };
+
+  const mdxContent = fs.readFileSync(filePath, 'utf-8');
+  const { data } = matter(mdxContent);
+
+  return {
+    title: data.title || slugArray.at(-1) || slugArray || 'Blog post', // 默认标题
+    description: data.description || slugArray.at(-1) || slugArray || 'Blog post', // 默认描述
+  };
+
 }
 
 export async function generateStaticParams() {
