@@ -1,0 +1,90 @@
+.homepage {
+	overflow: auto;
+	
+	.contents {
+		writing-mode: vertical-lr;
+		display: block;
+		padding: 1em;
+		height: 96%;
+		margin: 10px auto;
+
+		.title {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			margin-right: 25px;
+
+			h1 {
+				font-size: 7rem;
+				letter-spacing: 0.1em;
+			}
+
+			.bloglink {
+				padding-bottom: 6rem; 
+				font-size: 3rem;
+				font-weight: 700; 
+				color: #3B82F6; 
+				text-decoration: underline;
+				text-orientation: upright;
+			}
+		}
+
+		.article {
+
+			div {
+				font-size: 4.5rem;
+				color: rgb(24, 24, 24);
+			}
+
+			p {
+				padding-bottom: 6rem; 
+				font-size: 2.25rem;
+				color: rgb(34, 42, 56);
+				text-align: end;
+			}
+		}
+	}
+
+}
+
+// 在屏幕宽度小于 1024px 时设置字体大小
+@media (max-width: 1024px) {
+  .homepage {
+		
+		.contents {
+			writing-mode: horizontal-tb;
+			margin: 0;
+			padding: 0;
+			height: 100%;
+			
+			.title {
+				display: block;
+				text-align: center;
+	
+				h1 {
+					font-size: 2.5rem;
+				}
+	
+				.bloglink {
+					font-size: 1.8rem;
+					padding: 0;
+				}
+			}
+	
+			.article {
+				// text-align: center;
+	
+				div {
+					font-size: 1.96rem;
+					padding: 0 10px;
+				}
+	
+				p {
+					font-size: 1.8rem;
+					padding: 0;
+				}
+			}
+		}
+	
+	}
+}
