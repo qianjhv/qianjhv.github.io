@@ -5,6 +5,13 @@ import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote/rsc';
 
 import matter from "gray-matter";
 
+//
+import { unified } from 'unified';
+import remarkParse from 'remark-parse';
+import remarkRehype from 'remark-rehype';
+import rehypeSanitize from 'rehype-sanitize';
+import rehypeStringify from 'rehype-stringify';
+
 import { getNestedMDXPaths } from '@/lib/slugs';
 
 
@@ -22,7 +29,6 @@ export default async function BlogPost({ params }: { params: { slug: string | st
   let filePath = '';
 
   const param = await params;
-  console.log(param);
   const slugArray = Array.isArray(param.slug) ? param.slug : [param.slug]; // 处理 slug 为数组或字符串的情况
   for (const ext of possibleExtensions) {
     const potentialPath = path.join(process.cwd(), 'src/contents', ...slugArray) + ext;
@@ -39,13 +45,24 @@ export default async function BlogPost({ params }: { params: { slug: string | st
   const mdxContent = fs.readFileSync(filePath, 'utf-8');
   const { data, content } = matter(mdxContent);
 
+  console.log('content', content);
+
+  const html = await unified()
+  .use(remarkParse) // Step 1: Parse Markdown to AST
+    .use(remarkRehype) // Step 2: Convert Markdown AST to HTML AST
+    .use(rehypeSanitize) // Step 3: Sanitize the HTML
+    .use(rehypeStringify) // Step 4: Convert HTML AST to HTML string
+    .process(content); // Input Markdown content
+
+  console.log(html);
+
   const stats = fs.statSync(filePath);
   const lastModified = stats.mtime.toISOString(); // 文件的最后修改时间
 
   // console.log(lastModified);
 
   return (
-    <MDXRemote source={content} />
+    <MDXRemote source={html} />
   );
 }
 
