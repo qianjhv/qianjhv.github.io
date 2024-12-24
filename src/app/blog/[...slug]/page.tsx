@@ -11,6 +11,11 @@ import remarkParse from 'remark-parse';
 import remarkRehype from 'remark-rehype';
 import rehypeSanitize from 'rehype-sanitize';
 import rehypeStringify from 'rehype-stringify';
+import remarkGfm from "remark-gfm";
+import rehypeRaw from 'rehype-raw';
+import rehypeFormat from 'rehype-format';
+import { defaultSchema } from 'hast-util-sanitize';
+import remarkMdx from 'remark-mdx';
 
 import { getNestedMDXPaths } from '@/lib/slugs';
 
@@ -45,16 +50,26 @@ export default async function BlogPost({ params }: { params: { slug: string | st
   const mdxContent = fs.readFileSync(filePath, 'utf-8');
   const { data, content } = matter(mdxContent);
 
-  console.log('content', content);
+  const extendedSchema = {
+    ...defaultSchema,
+    tagNames: [...(defaultSchema.tagNames ?? []), 'input'], // 允许 <input> 标签
+    attributes: {
+      ...defaultSchema.attributes,
+      input: ['type', 'checked', 'disabled'], // 明确允许的 <input> 属性
+    },
+  };
 
   const html = await unified()
-  .use(remarkParse) // Step 1: Parse Markdown to AST
+    .use(remarkParse) // Step 1: Parse Markdown to AST
+    .use(remarkGfm) // Enable GFM syntax
     .use(remarkRehype) // Step 2: Convert Markdown AST to HTML AST
+    .use(rehypeRaw)
+    .use(rehypeFormat)
     .use(rehypeSanitize) // Step 3: Sanitize the HTML
-    .use(rehypeStringify) // Step 4: Convert HTML AST to HTML string
+    .use(rehypeStringify, { closeSelfClosing: true }) // Step 4: Convert HTML AST to HTML string
     .process(content); // Input Markdown content
 
-  console.log(html);
+  console.log('-----------', html);
 
   const stats = fs.statSync(filePath);
   const lastModified = stats.mtime.toISOString(); // 文件的最后修改时间
