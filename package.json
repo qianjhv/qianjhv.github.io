@@ -18,6 +18,8 @@
 		"react": "^19.0.0",
 		"react-dom": "^19.0.0",
 		"rehype-format": "^5.0.1",
+		"rehype-minify-whitespace": "^6.0.2",
+		"rehype-preset-minify": "^7.0.1",
 		"rehype-raw": "^7.0.0",
 		"rehype-sanitize": "^6.0.0",
 		"rehype-stringify": "^10.0.1",

@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote/rsc';
+import { compileMDX, MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote/rsc';
 // import { serialize } from 'next-mdx-remote/serialize';
 
 import matter from "gray-matter";
@@ -13,9 +13,10 @@ import rehypeSanitize from 'rehype-sanitize';
 import rehypeStringify from 'rehype-stringify';
 import remarkGfm from "remark-gfm";
 import rehypeRaw from 'rehype-raw';
-import rehypeFormat from 'rehype-format';
 import { defaultSchema } from 'hast-util-sanitize';
+import rehypeFormat from 'rehype-format';
 import remarkMdx from 'remark-mdx';
+import rehypeMinifyWhitespace from 'rehype-minify-whitespace';
 
 import { getNestedMDXPaths } from '@/lib/slugs';
 
@@ -50,26 +51,51 @@ export default async function BlogPost({ params }: { params: { slug: string | st
   const mdxContent = fs.readFileSync(filePath, 'utf-8');
   const { data, content } = matter(mdxContent);
 
+  console.log(defaultSchema);
   const extendedSchema = {
     ...defaultSchema,
-    tagNames: [...(defaultSchema.tagNames ?? []), 'input'], // 允许 <input> 标签
+    tagNames: [
+      ...defaultSchema.tagNames ?? [],
+      'section', // 允许 section 标签
+      'sup',     // 允许 sup 标签
+    ],
     attributes: {
       ...defaultSchema.attributes,
-      input: ['type', 'checked', 'disabled'], // 明确允许的 <input> 属性
+      section: [''], // 为 section 添加允许的属性
+      h2: [''],
+      ul: [''],
+      li: [''],
+      a: [''],
     },
   };
+  
+  // const html = await unified()
+  //   .use(remarkParse) // Step 1: Parse Markdown to AST
+  //   .use(remarkGfm) // Enable GFM syntax
+  //   .use(remarkRehype) // Step 2: Convert Markdown AST to HTML AST
+  //   .use(rehypeRaw)
+  //   .use(rehypeFormat)
+  //   .use(rehypeSanitize, extendedSchema)
+  //   .use(rehypeStringify, { closeSelfClosing: true }) // Step 4: Convert HTML AST to HTML string
+  //   .process(content); // Input Markdown content
 
-  const html = await unified()
-    .use(remarkParse) // Step 1: Parse Markdown to AST
-    .use(remarkGfm) // Enable GFM syntax
-    .use(remarkRehype) // Step 2: Convert Markdown AST to HTML AST
-    .use(rehypeRaw)
-    .use(rehypeFormat)
-    .use(rehypeSanitize) // Step 3: Sanitize the HTML
-    .use(rehypeStringify, { closeSelfClosing: true }) // Step 4: Convert HTML AST to HTML string
-    .process(content); // Input Markdown content
+  // console.log('-----------', html);
 
-  console.log('-----------', html);
+
+   // 使用 compileMDX 而不是 unified
+   const { content: compiledContent } = await compileMDX({
+    source: content,
+    options: {
+      parseFrontmatter: true,
+      mdxOptions: {
+        remarkPlugins: [remarkGfm],
+        rehypePlugins: [
+          [rehypeSanitize],
+          rehypeMinifyWhitespace
+        ],
+      },
+    },
+  });
 
   const stats = fs.statSync(filePath);
   const lastModified = stats.mtime.toISOString(); // 文件的最后修改时间
@@ -77,7 +103,9 @@ export default async function BlogPost({ params }: { params: { slug: string | st
   // console.log(lastModified);
 
   return (
-    <MDXRemote source={html} />
+    <main>
+      {compiledContent}
+    </main>
   );
 }
 
