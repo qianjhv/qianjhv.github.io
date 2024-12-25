@@ -1,28 +1,48 @@
 import fs from 'fs';
 import path from 'path';
-import { compileMDX, MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote/rsc';
-// import { serialize } from 'next-mdx-remote/serialize';
+import { compileMDX } from 'next-mdx-remote/rsc';
 
 import matter from "gray-matter";
 
+
+
 //
-import { unified } from 'unified';
-import remarkParse from 'remark-parse';
-import remarkRehype from 'remark-rehype';
-import rehypeSanitize from 'rehype-sanitize';
-import rehypeStringify from 'rehype-stringify';
+import rehypeSanitize, { defaultSchema } from 'rehype-sanitize';
 import remarkGfm from "remark-gfm";
-import rehypeRaw from 'rehype-raw';
-import { defaultSchema } from 'hast-util-sanitize';
-import rehypeFormat from 'rehype-format';
-import remarkMdx from 'remark-mdx';
 import rehypeMinifyWhitespace from 'rehype-minify-whitespace';
+import remarkMath from 'remark-math';
+import rehypeKatex from 'rehype-katex';
+
 
 import { getNestedMDXPaths } from '@/lib/slugs';
 
 
-// 如果想要在 MDX 文件中，使用其它组件，需要在此处导入，并将其传递给 MDXRemote 
-// MDXRemote source={mdxContent} components={mdxComponents} />;
+// 扩展 sanitize schema 以支持 KaTeX
+const extendedSchema = {
+  ...defaultSchema,
+  tagNames: [
+    ...(defaultSchema.tagNames ?? []),
+    'section',
+    'sup',
+    // KaTeX 相关标签
+    'math',
+    'semantics',
+    'mrow',
+    'mi',
+    'mn',
+    'mo',
+    'msup',
+    'annotation',
+    'span',  // KaTeX 使用 span 渲染一些元素
+  ],
+  attributes: {
+    ...defaultSchema.attributes,
+    // KaTeX 相关属性
+    '*': ['className', 'style'],  // KaTeX 需要这些属性
+    span: ['class', 'style'],
+    math: ['xmlns', 'display'],
+  },
+};
 
 // 强制所有动态路由参数在构建时被静态生成（SSG）
 export const dynamicParams = false;
@@ -51,35 +71,6 @@ export default async function BlogPost({ params }: { params: { slug: string | st
   const mdxContent = fs.readFileSync(filePath, 'utf-8');
   const { data, content } = matter(mdxContent);
 
-  console.log(defaultSchema);
-  const extendedSchema = {
-    ...defaultSchema,
-    tagNames: [
-      ...defaultSchema.tagNames ?? [],
-      'section', // 允许 section 标签
-      'sup',     // 允许 sup 标签
-    ],
-    attributes: {
-      ...defaultSchema.attributes,
-      section: [''], // 为 section 添加允许的属性
-      h2: [''],
-      ul: [''],
-      li: [''],
-      a: [''],
-    },
-  };
-  
-  // const html = await unified()
-  //   .use(remarkParse) // Step 1: Parse Markdown to AST
-  //   .use(remarkGfm) // Enable GFM syntax
-  //   .use(remarkRehype) // Step 2: Convert Markdown AST to HTML AST
-  //   .use(rehypeRaw)
-  //   .use(rehypeFormat)
-  //   .use(rehypeSanitize, extendedSchema)
-  //   .use(rehypeStringify, { closeSelfClosing: true }) // Step 4: Convert HTML AST to HTML string
-  //   .process(content); // Input Markdown content
-
-  // console.log('-----------', html);
 
 
    // 使用 compileMDX 而不是 unified
@@ -88,17 +79,15 @@ export default async function BlogPost({ params }: { params: { slug: string | st
     options: {
       parseFrontmatter: true,
       mdxOptions: {
-        remarkPlugins: [remarkGfm],
+        remarkPlugins: [remarkGfm, remarkMath],
         rehypePlugins: [
-          [rehypeSanitize],
+          rehypeKatex,
+          [rehypeSanitize, extendedSchema],
           rehypeMinifyWhitespace
         ],
       },
     },
   });
-
-  const stats = fs.statSync(filePath);
-  const lastModified = stats.mtime.toISOString(); // 文件的最后修改时间
 
   // console.log(lastModified);
 
@@ -144,6 +133,10 @@ export async function generateMetadata({ params }: { params: { slug: string | st
 
   const mdxContent = fs.readFileSync(filePath, 'utf-8');
   const { data } = matter(mdxContent);
+
+
+  // const stats = fs.statSync(filePath);
+  // const lastModified = stats.mtime.toISOString(); // 文件的最后修改时间
 
   return {
     title: data.title || slugArray.at(-1) || slugArray || 'Blog post', // 默认标题
