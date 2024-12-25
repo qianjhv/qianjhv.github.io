@@ -1,17 +1,13 @@
 import fs from 'fs';
 import path from 'path';
+
 import { compileMDX } from 'next-mdx-remote/rsc';
-
-import matter from "gray-matter";
-
-
-
-//
-import rehypeSanitize, { defaultSchema } from 'rehype-sanitize';
 import remarkGfm from "remark-gfm";
-import rehypeMinifyWhitespace from 'rehype-minify-whitespace';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
+import rehypeSanitize, { defaultSchema } from 'rehype-sanitize';
+import rehypeMinifyWhitespace from 'rehype-minify-whitespace';
+import matter from "gray-matter";
 
 
 import { getNestedMDXPaths } from '@/lib/slugs';
@@ -68,16 +64,13 @@ export default async function BlogPost({ params }: { params: { slug: string | st
     return { notFound: true }; // 如果文件不存在
   }
 
-  const mdxContent = fs.readFileSync(filePath, 'utf-8');
-  const { data, content } = matter(mdxContent);
-
-
+  const fileContent = fs.readFileSync(filePath, 'utf-8');
+  const { content: mdxContent } = matter(fileContent);
 
    // 使用 compileMDX 而不是 unified
    const { content: compiledContent } = await compileMDX({
-    source: content,
+    source: mdxContent,
     options: {
-      parseFrontmatter: true,
       mdxOptions: {
         remarkPlugins: [remarkGfm, remarkMath],
         rehypePlugins: [
@@ -89,7 +82,7 @@ export default async function BlogPost({ params }: { params: { slug: string | st
     },
   });
 
-  // console.log(lastModified);
+  // console.log(compiledContent);
 
   return (
     <main>

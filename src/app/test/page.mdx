@@ -1,52 +1,55 @@
-# /src/app/test/page.mdx
+# 数学公式示例
 
-<div>DIV</div>
-<input type="checkbox" />
+行内公式：$E = mc^2$
 
-## 表格
-| Name    | Age | Country |
-|---------|-----|---------|
-| Alice   | 25  | USA     |
-| Bob     | 30  | Canada  |
+块级公式：
+$$
+\int_{a}^{b} x^2 \, dx = \frac{1}{3}x^3 \bigg|_{a}^{b}
+$$
 
+分数与根号：
+$$
+\sqrt{\frac{a}{b}}
+$$
 
-## 删除线
-~~This text is crossed out.~~
+矩阵与括号：
+$$
+\begin{bmatrix}
+1 & 2 \\
+3 & 4
+\end{bmatrix}
+\cdot
+\begin{pmatrix}
+x \\
+y
+\end{pmatrix}
+=
+\begin{pmatrix}
+1 \cdot x + 2 \cdot y \\
+3 \cdot x + 4 \cdot y
+\end{pmatrix}
+$$
 
-## 任务列表
+上标与下标：
+$$
+x_i^j = \sum_{k=1}^n x_k
+$$
 
-- [x] Complete this task
-- [ ] Start the next task
+希腊字母与特殊符号：
+$$
+\alpha + \beta = \gamma, \quad \Delta x = \epsilon
+$$
 
-## 自动链接
+大括号与条件表达式：
+$$
+f(x) =
+\begin{cases}
+x^2 & \text{if } x \geq 0, \\
+-x & \text{if } x < 0.
+\end{cases}
+$$
 
-Visit https://example.com!
-
-# GFM
-
-## Autolink literals
-
-www.example.com, https://example.com, and contact@example.com.
-
-## Footnote
-
-A note[^1]
-[^1]: Big note.
-
-
-## Strikethrough
-
-~one~ or ~~two~~ tildes.
-
-## Table
-
-| a | b  |  c |  d  |
-| - | :- | -: | :-: |
-
-## Tasklist
-
-* [ ] to do
-* [x] done
-
-dafqwd
-dasdqw
+极限与集合：
+$$
+\lim_{x \to \infty} \frac{1}{x} = 0, \quad \mathbb{R} = \{ x \mid x \text{ is real} \}
+$$
