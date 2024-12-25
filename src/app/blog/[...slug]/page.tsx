@@ -1,8 +1,37 @@
 import fs from 'fs';
 import path from 'path';
 
-import { MDXRemote } from 'next-mdx-remote/rsc';
+import { compileMDX } from 'next-mdx-remote/rsc';
+import remarkGfm from "remark-gfm";
+import remarkMath from 'remark-math';
+import rehypeKatex from 'rehype-katex';
+import rehypeSanitize, { defaultSchema } from 'rehype-sanitize';
+import rehypeMinifyWhitespace from 'rehype-minify-whitespace';
 import matter from 'gray-matter';
+
+const extendedSchema = {
+  ...defaultSchema,
+  tagNames: [
+    ...(defaultSchema.tagNames ?? []),
+    'section',
+    'sup',
+    'math',
+    'semantics',
+    'mrow',
+    'mi',
+    'mn',
+    'mo',
+    'msup',
+    'annotation',
+    'span',
+  ],
+  attributes: {
+    ...defaultSchema.attributes,
+    '*': ['className', 'style'],
+    span: ['class', 'style'],
+    math: ['xmlns', 'display'],
+  },
+};
 
 export const dynamicParams = false;
 
@@ -25,15 +54,26 @@ export default async function BlogPost({ params }: { params: { slug: string | st
     return { notFound: true };
   }
 
-  const mdxContent = fs.readFileSync(filePath, 'utf-8');
-  const { data, content } = matter(mdxContent);
-  
-  const stats = fs.statSync(filePath);
-  const lastModified = stats.mtime.toISOString();
-  // console.log(lastModified);
+  const fileContent = fs.readFileSync(filePath, 'utf-8');
+  const { content: mdxContent } = matter(fileContent);
+  const { content: compiledContent } = await compileMDX({
+    source: mdxContent,
+    options: {
+      mdxOptions: {
+      remarkPlugins: [remarkGfm, remarkMath],
+      rehypePlugins: [
+        rehypeKatex,
+        [rehypeSanitize, extendedSchema],
+        rehypeMinifyWhitespace
+      ],
+      },
+    },
+  });
 
   return (
-    <MDXRemote source={content} />
+    <main>
+      {compiledContent}
+    </main>
   );
 }
 
