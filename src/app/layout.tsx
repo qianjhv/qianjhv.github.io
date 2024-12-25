@@ -1,4 +1,5 @@
 import "@/styles/global.css";
+import "katex/dist/katex.min.css";
 
 export const metadata = {
   title: 'Next.js',
