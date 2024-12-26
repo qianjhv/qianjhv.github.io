@@ -12,6 +12,7 @@ import matter from "gray-matter";
 
 import { getNestedMDXPaths } from '@/lib/slugs';
 
+import ArticleTypography from '@/ui/ArticleTypography'; 
 
 // 扩展 sanitize schema 以支持 KaTeX
 const extendedSchema = {
@@ -30,6 +31,8 @@ const extendedSchema = {
     'msup',
     'annotation',
     'span',  // KaTeX 使用 span 渲染一些元素
+    'svg',
+    'path'
   ],
   attributes: {
     ...defaultSchema.attributes,
@@ -37,7 +40,18 @@ const extendedSchema = {
     '*': ['className', 'style'],  // KaTeX 需要这些属性
     span: ['class', 'style'],
     math: ['xmlns', 'display'],
+    svg: ['xmlns', 'viewBox', 'width', 'height', 'style', 'preserveAspectRatio'],
+    path: ['d', 'fill', 'stroke', 'stroke-width'],
   },
+};
+
+type ArticleData = {
+  title: string;
+  description?: string;
+  tags?: string[];
+  date?: string;
+  showToc?: boolean;
+  lastUpdated?: string;
 };
 
 // 强制所有动态路由参数在构建时被静态生成（SSG）
@@ -65,7 +79,7 @@ export default async function BlogPost({ params }: { params: { slug: string | st
   }
 
   const fileContent = fs.readFileSync(filePath, 'utf-8');
-  const { content: mdxContent } = matter(fileContent);
+  const { data, content: mdxContent } = matter(fileContent);
 
    // 使用 compileMDX 而不是 unified
    const { content: compiledContent } = await compileMDX({
@@ -82,12 +96,19 @@ export default async function BlogPost({ params }: { params: { slug: string | st
     },
   });
 
-  // console.log(compiledContent);
-
+  const articleData: ArticleData = {
+    title: data.title,
+    description: data.description || "Default description",
+    tags: data.tags || [],
+    date: data.date || null,
+    showToc: data.showToc || false,
+    lastUpdated: data.lastUpdated || null,
+  };
+  
   return (
-    <main>
+    <ArticleTypography data={articleData}>
       {compiledContent}
-    </main>
+    </ArticleTypography>
   );
 }
 
@@ -127,12 +148,18 @@ export async function generateMetadata({ params }: { params: { slug: string | st
   const mdxContent = fs.readFileSync(filePath, 'utf-8');
   const { data } = matter(mdxContent);
 
+  console.log(data);
+  const stats = fs.statSync(filePath);
+  const lastModified = stats.mtime.toISOString(); // 文件的最后修改时间
 
-  // const stats = fs.statSync(filePath);
-  // const lastModified = stats.mtime.toISOString(); // 文件的最后修改时间
+  const additionalMetadata = {
+    date: data.date,
+    lastUpdated: lastModified,
+  };
 
   return {
     title: data.title || slugArray.at(-1) || slugArray || 'Blog post', // 默认标题
     description: data.description || slugArray.at(-1) || slugArray || 'Blog post', // 默认描述
+    ...additionalMetadata
   };
 }
