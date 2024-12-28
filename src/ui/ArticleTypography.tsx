@@ -12,7 +12,8 @@ export default function ArticleTypography(
 	{data, children} : {data: ArticleData, children?: React.ReactNode;}
 ) {
 	return (
-		<article className="prose prose-base max-w-[768px] mx-auto">
+		// <article className="prose dark:prose-invert max-w-[768px] mx-auto">
+		<article className="mdx-typography-default dark:mdx-typography-dark max-w-[768px] mx-auto">
 			<h1>{data.title}</h1>
 			
 			<div className="metadata">

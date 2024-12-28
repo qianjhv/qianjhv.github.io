@@ -1,0 +1,269 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 默认情况下使用明亮模式 */
+:root {
+	--background-color: #fafafa;
+	--text-color: #000000;
+	--link-color: #1e90ff;
+}
+
+/* 暗黑模式的 CSS 变量 */
+[class='dark'] {
+	--background-color: #464545;
+	--text-color: #e0e0e0;
+	--link-color: #bb86fc;
+
+	// 代码主题切换
+	code[data-theme*=" "],
+  code[data-theme*=" "] span {
+    color: var(--shiki-dark);
+    background-color: var(--shiki-dark-bg);
+  }
+
+  // code[data-theme*=" "] span[data-highlighted-line] {
+  //   background-color: rgb(206 224 241 / 0.1);
+  //   border-left: 2px solid #60A5FA;
+  //   border-radius: 3px;
+  // }
+}
+
+/* 全局样式 */
+body {
+	background-color: var(--background-color);
+	color: var(--text-color);
+}
+
+a {
+  color: var(--link-color);
+}
+
+@layer utilities {
+  .mdx-typography-default {
+    @apply md:text-base text-sm;
+
+    h1 {
+      margin-top: 1.25em;
+      font-size: 2em;
+      line-height: 2em;
+      font-weight: 500;
+    }
+    h2 {
+      margin-top: 1.25em;
+      margin-bottom: 0.5em;
+      font-size: 1.8em;
+      line-height: 1.2em;
+      font-weight: 400;
+
+      &::before {
+        margin-right: 10px;
+        content: '';
+        display: inline-block;
+        width: 3px;
+        height: calc(1.2em - 11px);
+        border-radius: 8px;
+        background-color: #f5a524;
+        transform: translateY(2px);
+      }
+    }
+    h3 {
+      margin-top: 1.25em;
+      margin-bottom: 0.5em;
+      line-height: 1em;
+      font-size: 1.5em;
+      font-weight: 300;
+
+      &::before {
+        margin-right: 10px;
+        content: '';
+        display: inline-block;
+        width: 3px;
+        height: calc(1.2em - 11px);
+        border-radius: 8px;
+        background-color: #fbdba7;
+        transform: translateY(2px);
+      }
+    }
+    h4 {
+      margin-top: 1.25em;
+      margin-bottom: 0.5em;
+      line-height: 1em;
+      font-size: 1.2em;
+      font-weight: 300;
+
+      &::before {
+        margin-right: 10px;
+        content: '';
+        display: inline-block;
+        width: 3px;
+        height: calc(1.2em - 11px);
+        border-radius: 8px;
+        background-color: #efda96;
+        transform: translateY(2px);
+      }
+    }
+
+    p {
+      margin-top: 1em;
+      // margin-bottom: 1em;
+      line-height: 1.75;
+    }
+
+    b, strong {
+      font-weight: 600;
+      color: #f5a524;
+    }
+
+    ul, ol {
+      margin-top: 1.25em;
+      margin-bottom: 1.25em;
+      padding-left: 1.625em;
+
+      ul, ol {
+        margin: 0;
+
+        ul, ol {
+          margin: 0;
+        }
+      }
+    }
+    
+    li {
+      list-style: circle;
+    }
+
+    em {
+      color: #f5a524;
+    }
+
+    hr {
+      border: 1px solid hsla(232, calc(0.4* 80%), calc(64%), 0.2);
+      margin: 20px auto;
+    }
+
+    a {
+      color: var(--link-color);
+      text-decoration: underline;
+
+      &:hover {
+        background-color: #eeeef3;
+      }
+    }
+
+    img {
+      border-radius: 8px;
+    }
+
+    figure pre{
+      background-color: #f3f4f6;
+      padding: 10px;
+      border-radius: 4px;
+    }
+
+    code {
+      @apply font-mono;
+      background-color: #eeeef3;
+      border-radius: 4px;
+      padding: 0.1em 0.25em;
+      color: rgb(221, 19, 153);
+    }
+
+    p code,
+    li code,
+    blockquote code,
+    em code,
+    b code,
+    strong code {
+      font-size: 0.8em;
+    }
+
+    blockquote {
+      background-color: #f2f2f5;
+      border-radius: 4px;
+      padding-left: 8px;
+      color: #626161;
+      font-style: italic;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse; /* 去掉单元格间的间距 */
+      margin: 20px 0;
+      font-size: 16px;
+      text-align: center;
+    }
+    
+    table th,
+    table td {
+      border: 1px solid #ddd;
+      padding: 10px;
+    }
+    
+    table thead {
+      background-color: #f4f4f4; /* 表头背景色 */
+      font-weight: bold;
+    }
+    
+  }
+
+  .dark .mdx-typography-dark {
+    a:hover {
+      background-color: #626161;
+    }
+
+    figure pre{
+      background-color: #40413d;
+    }
+
+    blockquote {
+      background-color: rgb(66, 65, 65);
+      color: rgb(175, 171, 171);
+    }
+
+    table thead {
+      background-color: #626161; /* 表头背景色 */
+      font-weight: bold;
+    }
+  }
+}
+
+/* 代码块容器 */
+figure pre {
+  overflow-x: auto;
+  position: relative;
+}
+
+pre code {
+	counter-reset: line;
+}
+
+code > [data-line]::before {
+  counter-increment: line;
+  content: counter(line);
+  display: inline-block;
+  width: 1rem;
+  margin-right: 1rem;
+  text-align: right;
+  color: gray;
+}
+
+/* 确保代码内容不会覆盖行号 */
+code > [data-line] {
+  padding-left: 0.1rem;
+}
+
+// 代码主题切换
+code[data-theme*=" "],
+code[data-theme*=" "] span {
+  color: var(--shiki-light);
+  background-color: var(--shiki-light-bg);
+}
+
+// 指定行数的代码背景高亮
+code[data-theme*=" "] span[data-highlighted-line] {
+  background-color: rgba(200, 200, 255, 0.18) !important;
+  border-left: 2px solid #60A5FA;
+  border-radius: 3px;
+}
+

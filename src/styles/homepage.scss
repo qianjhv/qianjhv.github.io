@@ -1,5 +1,11 @@
 .homepage {
 	overflow: auto;
+
+	.theme {
+		position: fixed;
+		top: 20px;
+  	right: 36px;
+	}
 	
 	.contents {
 		writing-mode: vertical-lr;
@@ -23,7 +29,6 @@
 				padding-bottom: 6rem; 
 				font-size: 3rem;
 				font-weight: 700; 
-				color: #3B82F6; 
 				text-decoration: underline;
 				text-orientation: upright;
 			}
@@ -33,13 +38,11 @@
 
 			div {
 				font-size: 4.5rem;
-				color: rgb(24, 24, 24);
 			}
 
 			p {
 				padding-bottom: 6rem; 
 				font-size: 2.25rem;
-				color: rgb(34, 42, 56);
 				text-align: end;
 			}
 		}
@@ -50,7 +53,13 @@
 // 在屏幕宽度小于 1024px 时设置字体大小
 @media (max-width: 1024px) {
   .homepage {
-		
+		padding-top: 10px;
+
+		.theme {
+			top: 8px;
+			right: 8px;
+		}
+
 		.contents {
 			writing-mode: horizontal-tb;
 			margin: 0;
@@ -63,6 +72,7 @@
 	
 				h1 {
 					font-size: 2.5rem;
+					padding: 2px 0;
 				}
 	
 				.bloglink {

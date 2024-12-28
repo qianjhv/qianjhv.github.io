@@ -1,14 +1,14 @@
 import fs from 'fs';
 import path from 'path';
 
-import { compileMDX } from 'next-mdx-remote/rsc';
+import { MDXRemote, compileMDX } from 'next-mdx-remote/rsc';
 import remarkGfm from "remark-gfm";
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import rehypeSanitize, { defaultSchema } from 'rehype-sanitize';
 import rehypeMinifyWhitespace from 'rehype-minify-whitespace';
 import matter from "gray-matter";
-
+import rehypePrettyCode from "rehype-pretty-code";
 
 import { getNestedMDXPaths } from '@/lib/slugs';
 
@@ -32,16 +32,21 @@ const extendedSchema = {
     'annotation',
     'span',  // KaTeX 使用 span 渲染一些元素
     'svg',
-    'path'
+    'path',
+    'figure',
+    'code'
   ],
   attributes: {
     ...defaultSchema.attributes,
     // KaTeX 相关属性
-    '*': ['className', 'style'],  // KaTeX 需要这些属性
-    span: ['class', 'style'],
+    '*': ['className', 'style', 'class', 'data-line'],  // KaTeX 需要这些属性
+    span: ['class', 'style', 'data*'],
     math: ['xmlns', 'display'],
     svg: ['xmlns', 'viewBox', 'width', 'height', 'style', 'preserveAspectRatio'],
     path: ['d', 'fill', 'stroke', 'stroke-width'],
+    figure: ['data*'],
+    pre: ['className', 'class', 'data*', 'dir'],
+    code: ['className', 'class', 'data-line-numbers', 'data-line-numbers-max-digits', 'data*'],
   },
 };
 
@@ -88,6 +93,13 @@ export default async function BlogPost({ params }: { params: { slug: string | st
       mdxOptions: {
         remarkPlugins: [remarkGfm, remarkMath],
         rehypePlugins: [
+          [rehypePrettyCode, {
+            keepBackground: false,
+            theme: {
+              dark: "material-theme-darker",
+              light: "material-theme-lighter"
+            },
+          }],
           rehypeKatex,
           [rehypeSanitize, extendedSchema],
           rehypeMinifyWhitespace
@@ -104,7 +116,7 @@ export default async function BlogPost({ params }: { params: { slug: string | st
     showToc: data.showToc || false,
     lastUpdated: data.lastUpdated || null,
   };
-  
+
   return (
     <ArticleTypography data={articleData}>
       {compiledContent}
@@ -148,7 +160,6 @@ export async function generateMetadata({ params }: { params: { slug: string | st
   const mdxContent = fs.readFileSync(filePath, 'utf-8');
   const { data } = matter(mdxContent);
 
-  console.log(data);
   const stats = fs.statSync(filePath);
   const lastModified = stats.mtime.toISOString(); // 文件的最后修改时间
 

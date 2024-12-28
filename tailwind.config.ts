@@ -9,8 +9,28 @@ export default {
     "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      
+    }
   },
   darkMode: "class",
-  plugins: [require('@tailwindcss/typography'), nextui()],
+  plugins: [
+    require('@tailwindcss/typography')({
+    // className: "pink",
+    }), 
+    nextui({
+      themes: {
+        light: {
+          colors: {
+            background: "#fafafa",
+          },
+        },
+        dark: {
+          colors: {
+            background: "#464545",
+          },
+        },
+      }
+    }),
+  ],
 } satisfies Config

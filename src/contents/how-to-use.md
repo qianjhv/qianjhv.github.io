@@ -100,9 +100,9 @@ Markdown 提供了六个级别的标题，使用 `#` 符号来表示标题的级
 
 这是一个 ~~已删除~~ 的文本。
 
-### 代码块和代码高亮
+### 代码高亮（[Rehype Pretty Code](https://rehype-pretty.pages.dev/)）
 
-```javascript
+```javascript {1,2,4}
 function greet() {
   console.log('Hello, GFM!');
 }
