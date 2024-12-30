@@ -9,6 +9,8 @@ import rehypeSanitize, { defaultSchema } from 'rehype-sanitize';
 import rehypeMinifyWhitespace from 'rehype-minify-whitespace';
 import matter from "gray-matter";
 import rehypePrettyCode from "rehype-pretty-code";
+import rehypeMinifyAttributeWhitespace from 'rehype-minify-attribute-whitespace';
+import rehypeMinifyCssStyle from 'rehype-minify-css-style';
 
 import { getNestedMDXPaths } from '@/lib/slugs';
 
@@ -102,7 +104,9 @@ export default async function BlogPost({ params }: { params: { slug: string | st
           }],
           rehypeKatex,
           [rehypeSanitize, extendedSchema],
-          rehypeMinifyWhitespace
+          rehypeMinifyWhitespace,
+          rehypeMinifyCssStyle,
+          rehypeMinifyAttributeWhitespace,
         ],
       },
     },

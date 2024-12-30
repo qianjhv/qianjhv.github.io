@@ -21,6 +21,8 @@
 		"react": "^19.0.0",
 		"react-dom": "^19.0.0",
 		"rehype-katex": "^7.0.1",
+		"rehype-minify-attribute-whitespace": "^4.0.1",
+		"rehype-minify-css-style": "^4.0.1",
 		"rehype-minify-whitespace": "^6.0.2",
 		"rehype-pretty-code": "^0.14.0",
 		"rehype-sanitize": "^6.0.0",
