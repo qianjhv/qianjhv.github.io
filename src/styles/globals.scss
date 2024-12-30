@@ -2,14 +2,35 @@
 @tailwind components;
 @tailwind utilities;
 
+/* 默认情况下使用明亮模式 */
+:root {
+	--background-color: #fafafa;
+	--text-color: #000000;
+	--link-color: #1e90ff;
+}
 
+/* 暗黑模式的 CSS 变量 */
+[class='dark'] {
+	--background-color: #464545;
+	--text-color: #e0e0e0;
+	--link-color: #bb86fc;
+}
 
+/* 全局样式 */
+body {
+	background-color: var(--background-color);
+	color: var(--text-color);
+}
 
+a {
+  color: var(--link-color);
+}
 
 
 
 
 @layer utilities {
+	// for markdown typography and stylies
 	.mdx-typography-default {
 		@apply md:text-base text-sm;
 
@@ -76,7 +97,6 @@
 
 		p {
 			margin-top: 1em;
-			// margin-bottom: 1em;
 			line-height: 1.75;
 		}
 
@@ -95,6 +115,10 @@
 
 				ul, ol {
 					margin: 0;
+
+					ul, ol {
+						margin: 0;
+					}
 				}
 			}
 		}
@@ -158,7 +182,7 @@
 
 		table {
 			width: 100%;
-			border-collapse: collapse; /* 去掉单元格间的间距 */
+			border-collapse: collapse;
 			margin: 20px 0;
 			font-size: 16px;
 			text-align: center;
@@ -171,7 +195,7 @@
 		}
 		
 		table thead {
-			background-color: #f4f4f4; /* 表头背景色 */
+			background-color: #f4f4f4;
 			font-weight: bold;
 		}
 		
@@ -192,10 +216,11 @@
 		}
 
 		table thead {
-			background-color: #626161; /* 表头背景色 */
+			background-color: #626161;
 			font-weight: bold;
 		}
 	}
+
 }
 
 

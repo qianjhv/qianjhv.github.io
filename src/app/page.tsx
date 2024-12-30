@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { Liu_Jian_Mao_Cao } from 'next/font/google';
 
-import '@/styles/homepage.scss'
+import '@/styles/homepage.scss';
+import {ToggleThemes} from "@/lib/ThemeProviders"
  
 const maocao = Liu_Jian_Mao_Cao({
   weight: '400',
@@ -10,8 +11,11 @@ const maocao = Liu_Jian_Mao_Cao({
 
 export default function Page() {
   return (
-    <div className={`${maocao.className} homepage`}>
-      <div className="contents">
+    <div className="homepage">
+      <div className="theme">
+        <ToggleThemes />
+      </div>
+      <div className={`${maocao.className} contents`}>
         <div className="title">
           <h1>陋室铭</h1>
           <Link href="/blog" className="bloglink">Blog</Link>
