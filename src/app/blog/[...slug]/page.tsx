@@ -25,12 +25,21 @@ const extendedSchema = {
     'msup',
     'annotation',
     'span',
+    'svg',
+    'path',
+    'figure',
+    'code'
   ],
   attributes: {
     ...defaultSchema.attributes,
-    '*': ['className', 'style'],
-    span: ['class', 'style'],
+    '*': ['className', 'style', 'class', 'data-line'],
+    span: ['class', 'style', 'data*'],
     math: ['xmlns', 'display'],
+    svg: ['xmlns', 'viewBox', 'width', 'height', 'style', 'preserveAspectRatio'],
+    path: ['d', 'fill', 'stroke', 'stroke-width'],
+    figure: ['data*'],
+    pre: ['className', 'class', 'data*', 'dir'],
+    code: ['className', 'class', 'data-line-numbers', 'data-line-numbers-max-digits', 'data*'],
   },
 };
 
@@ -63,14 +72,18 @@ export default async function BlogPost({ params }: { params: { slug: string | st
       mdxOptions: {
       remarkPlugins: [remarkGfm, remarkMath],
       rehypePlugins: [
-        rehypeKatex,
         [rehypePrettyCode, {
           keepBackground: false,
-            theme: {
-              dark: "material-theme-darker",
-              light: "material-theme-lighter"
-            },
+          // defaultLang: {
+          //   block: "plaintext",
+          //   inline: "plaintext",
+          // },
+          theme: {
+            dark: "github-dark",
+            light: "github-light"
+          },
         }],
+        rehypeKatex,
         [rehypeSanitize, extendedSchema],
         rehypeMinifyWhitespace
       ],
@@ -79,7 +92,7 @@ export default async function BlogPost({ params }: { params: { slug: string | st
   });
 
   return (
-    <main>
+    <main className='mdx-typography-default dark:mdx-typography-dark max-w-[768px] mx-auto'>
       {compiledContent}
     </main>
   );

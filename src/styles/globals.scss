@@ -2,21 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
-/* 默认情况下使用明亮模式 */
 :root {
 	--background-color: #fafafa;
 	--text-color: #000000;
 	--link-color: #1e90ff;
 }
 
-/* 暗黑模式的 CSS 变量 */
 [class='dark'] {
 	--background-color: #464545;
 	--text-color: #e0e0e0;
 	--link-color: #bb86fc;
+
+	// dark code highlight
+	code[data-theme*=" "],
+  code[data-theme*=" "] span {
+    color: var(--shiki-dark);
+    background-color: var(--shiki-dark-bg);
+  }
 }
 
-/* 全局样式 */
 body {
 	background-color: var(--background-color);
 	color: var(--text-color);
@@ -223,4 +227,41 @@ a {
 
 }
 
+// code highlight
+figure pre {
+  overflow-x: auto;
+  position: relative;
+	margin: 1em 0;
+	font-size: 0.9em;
+}
+
+pre code {
+	counter-reset: line;
+}
+
+code > [data-line]::before {
+  counter-increment: line;
+  content: counter(line);
+  display: inline-block;
+  width: 1rem;
+  margin-right: 1rem;
+  text-align: right;
+  color: gray;
+}
+
+code > [data-line] {
+  padding-left: 0.1rem;
+}
+
+code[data-theme*=" "],
+code[data-theme*=" "] span {
+  color: var(--shiki-light);
+  background-color: var(--shiki-light-bg);
+}
+
+code[data-theme*=" "] span[data-highlighted-line] {
+  background-color: rgba(200, 200, 255, 0.18) !important;
+  border-left: 2px solid #60A5FA;
+  border-radius: 3px;
+}
 
