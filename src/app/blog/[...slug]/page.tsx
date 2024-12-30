@@ -1,13 +1,14 @@
 import fs from 'fs';
 import path from 'path';
 
+import matter from 'gray-matter';
 import { compileMDX } from 'next-mdx-remote/rsc';
 import remarkGfm from "remark-gfm";
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
+import rehypePrettyCode from "rehype-pretty-code";
 import rehypeSanitize, { defaultSchema } from 'rehype-sanitize';
 import rehypeMinifyWhitespace from 'rehype-minify-whitespace';
-import matter from 'gray-matter';
 
 const extendedSchema = {
   ...defaultSchema,
@@ -63,6 +64,13 @@ export default async function BlogPost({ params }: { params: { slug: string | st
       remarkPlugins: [remarkGfm, remarkMath],
       rehypePlugins: [
         rehypeKatex,
+        [rehypePrettyCode, {
+          keepBackground: false,
+            theme: {
+              dark: "material-theme-darker",
+              light: "material-theme-lighter"
+            },
+        }],
         [rehypeSanitize, extendedSchema],
         rehypeMinifyWhitespace
       ],

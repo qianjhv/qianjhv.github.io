@@ -149,6 +149,15 @@ module.exports = {
 import "@/styles/global.scss";
 ```
 
+## 全局亮色主题和暗色主题
+
+由于后续步骤需要 css 样式化，在这里我们先使用 [next-themes](https://github.com/pacocoursey/next-themes) 设置全局的亮色主题和暗色主题，以方便后续操作。
+
+```
+# 安装
+pnpm install next-themes
+```
+
 ## remark 和 rehype
 
 使用 remark 和 rehype 生态系统进行扩展，如 frontmatter，markdown 语法扩展（GFM），数学公式支持（Katex），代码语法高亮（rehype-pretty-code），清理并安全化 HTML（rehype-sanitize），代码压缩（rehype-minify）等等。
