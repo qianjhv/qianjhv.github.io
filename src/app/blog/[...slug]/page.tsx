@@ -9,6 +9,7 @@ import rehypeKatex from 'rehype-katex';
 import rehypePrettyCode from "rehype-pretty-code";
 import rehypeSanitize, { defaultSchema } from 'rehype-sanitize';
 import rehypeMinifyWhitespace from 'rehype-minify-whitespace';
+import rehypeMinifyCssStyle from 'rehype-minify-css-style';
 
 const extendedSchema = {
   ...defaultSchema,
@@ -43,15 +44,26 @@ const extendedSchema = {
   },
 };
 
+type PageProps = {
+  params: Promise<{
+    slug: string[]
+  }>,
+}
+
+type MetadataProps = {
+  params: Promise<{
+    slug: string[]
+  }>
+}
+
 export const dynamicParams = false;
 
-export default async function BlogPost({ params }: { params: { slug: string | string[] } }) {
+export default async function BlogPost({ params }: PageProps) {
 
   const possibleExtensions = ['.mdx', '.md'];
   let filePath = '';
-
-  const param = await params;
-  const slugArray = Array.isArray(param.slug) ? param.slug : [param.slug];
+  const resolvedParams = await params;
+  const slugArray = Array.isArray(resolvedParams.slug) ? resolvedParams.slug : [resolvedParams.slug];
   for (const ext of possibleExtensions) {
     const potentialPath = path.join(process.cwd(), 'src/contents', ...slugArray) + ext;
     if (fs.existsSync(potentialPath)) {
@@ -74,20 +86,24 @@ export default async function BlogPost({ params }: { params: { slug: string | st
       rehypePlugins: [
         [rehypePrettyCode, {
           keepBackground: false,
-          // defaultLang: {
-          //   block: "plaintext",
-          //   inline: "plaintext",
-          // },
+          defaultLang: {
+            block: "plaintext",
+          },
           theme: {
             dark: "github-dark",
             light: "github-light"
           },
+          transformers: [{
+            postprocess (html) {
+              return html.replace(/\n/g, '').trim();
+            },
+          }],
         }],
         rehypeKatex,
         [rehypeSanitize, extendedSchema],
-        rehypeMinifyWhitespace
-      ],
-      },
+        rehypeMinifyCssStyle,
+        rehypeMinifyWhitespace, 
+      ]},
     },
   });
 
@@ -98,11 +114,11 @@ export default async function BlogPost({ params }: { params: { slug: string | st
   );
 }
 
-export async function generateMetadata({ params }: { params: { slug: string | string[] } }) {
+export async function generateMetadata({ params }: MetadataProps) {
   const possibleExtensions = ['.mdx', '.md'];
   let filePath = '';
-  const param = await params;
-  const slugArray = param.slug;
+  const resolvedParams = await params;
+  const slugArray = resolvedParams.slug;
   for (const ext of possibleExtensions) {
     const potentialPath = path.join(process.cwd(), 'src/contents', ...slugArray) + ext;
     if (fs.existsSync(potentialPath)) {

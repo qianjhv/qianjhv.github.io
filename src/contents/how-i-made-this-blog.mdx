@@ -10,7 +10,7 @@ tags: [‘’]
 ## 介绍
 
 这是一篇使用 Nextjs 制作一个静态博客的记录，以及过程当中遇到的一些问题和感想，当然还有一些使用规则。
-虽然这不是一个很"严肃"的项目，但还是尽量对已有的一些简单开发流程，如需求分析，UI 设计，技术选型等等，大致心中有个底（UI 这种就东拼西凑了...）。
+虽然这不是一个很正式的项目，但还是尽量对已有的一些简单开发流程，如需求分析，UI 设计，技术选型等等，大致心中有个底（UI 这种就东拼西凑了...）。
 虽然是静态博客，但也会集成第三方工具实现评论功能，如果你感兴趣的话，非常欢迎探讨。
 
 ## 开发基础环境搭建
@@ -227,10 +227,16 @@ a {
 
 ```shell
 # 安装
-pnpm install remark-gfm rehype-sanitize remark-math rehype-katex katex rehype-pretty-code
+pnpm install remark-gfm rehype-sanitize remark-math rehype-katex katex rehype-pretty-code shiki
 
 # 使用 Katex 还须在全局引入 katex 数学公式样式，如在 /src/app/layout.tsx 中引入
 import "katex/dist/katex.min.css";
+
+# 压缩代码
+# rehype-minify 是一系列的压缩工具集合，它提供了一个插件集合 rehype-preset-minify（使用有问题）
+# 使用其中一些就行：(最重要的 rehype-minify-whitespace)
+# rehype-pretty-code 生成的代码可以使用 `transformers` 选项进行代码压缩
+pnpm install rehype-minify-whitespace rehype-minify-css-style
 ```
 
 ```ts
@@ -276,25 +282,33 @@ const { content: compiledContent } = await compileMDX({
   source: mdxContent,
   options: {
     mdxOptions: {
-      remarkPlugins: [remarkGfm, remarkMath],
-      rehypePlugins: [
-        [rehypePrettyCode, {
-          keepBackground: false,
-          theme: {
-            dark: "material-theme-darker",
-            light: "material-theme-lighter"
+    remarkPlugins: [remarkGfm, remarkMath],
+    rehypePlugins: [
+      [rehypePrettyCode, {
+        keepBackground: false,
+        defaultLang: {
+          block: "plaintext",
+        },
+        theme: {
+          dark: "github-dark",
+          light: "github-light"
+        },
+        transformers: [{
+          postprocess (html) {
+            return html.replace(/\n/g, '').trim();
           },
         }],
-        rehypeKatex,
-        [rehypeSanitize, extendedSchema],
-        rehypeMinifyWhitespace
-      ],
-    },
+      }],
+      rehypeKatex,
+      [rehypeSanitize, extendedSchema],
+      rehypeMinifyCssStyle,
+      rehypeMinifyWhitespace, 
+    ]},
   },
 });
 
 return (
-  <main>
+  <main className='mdx-typography-default dark:mdx-typography-dark max-w-[768px] mx-auto'>
     {compiledContent}
   </main>
 );
