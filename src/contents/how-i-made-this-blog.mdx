@@ -35,21 +35,21 @@ pnpm install next@latest react@latest react-dom@latest
 /src/app
 ```
 
-设置 TypeScript，ESLint 以及 Absolute Imports and Module Path Aliases，具体的方法请阅读 Nextjs 文档的安装部分。
+设置 TypeScript，ESLint 以及 Absolute Imports and Module Path Aliases，具体的方法请阅读 [Nextjs 文档的安装部分](https://nextjs.org/docs/app/getting-started/installation)。
 
 ## 支持 MDX
 
-1. 工具包解释与安装：@next/mdx, @mdx-js/loader, @mdx-js/react, @types/mdx
-	- @next/mdx - 专为 Next.js 提供 MDX 集成工具。简化了在 Next.js 中使用 MDX 的配置过程。内部依赖 @mdx-js/loadevr 来处理 Webpack 的加载。
-	- @mdx-js/loader - MDX 的 Webpack 加载器，用于在**构建时**将 .mdx 文件转换为可供 JavaScript 使用的模块。
-	- @mdx-js/react -用于在运行时将 MDX 内容渲染为 React 组件。
-	- @types/mdx -  TypeScript 类型声明包，为 MDX 提供类型支持，主要作用是让开发者在使用 MDX 时获得更好的类型提示、错误检测和代码补全功能。（MDX 文件本质上会被编译为 React 组件）
+- 工具包解释与安装：
+  - @mdx-js/react -用于在运行时将 MDX 内容渲染为 React 组件。
+  - @next/mdx - 专为 Next.js 提供 MDX 集成工具。简化了在 Next.js 中使用 MDX 的配置过程。内部依赖 @mdx-js/loadevr 来处理 Webpack 的加载。
+  - @mdx-js/loader - MDX 的 Webpack 加载器，用于在**构建时**将 .mdx 文件转换为可供 JavaScript 使用的模块。
+  - @types/mdx -  TypeScript 类型声明包，为 MDX 提供类型支持，主要作用是让开发者在使用 MDX 时获得更好的类型提示、错误检测和代码补全功能。（MDX 文件本质上会被编译为 React 组件）
 
 ```shell
 pnpm install @next/mdx @mdx-js/loader @mdx-js/react @types/mdx
 ```
 
-2. @next/mdx 配置 - 项目根目录下 `next.config.mjs`。（在没有使用 @next/mdx 的项目中，需要手动在 `webpack.config.js` 中配置 @mdx-js/loader）
+- @next/mdx 配置 - 项目根目录下 `next.config.mjs`。（在没有使用 @next/mdx 的项目中，需要手动在 `webpack.config.js` 中配置 @mdx-js/loader）
 - 完成这一步之后在 pages router 模式下，`.md` 和 `.mdx` 文件将被正确解析。在 app router 模式下还需要进一步配置。
 
 ```js
@@ -92,9 +92,9 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
 }
 ```
 
-4. 前面的三个步骤是完全按照官方文档来的，现在对其进行扩展，比如希望在 `/src/contents/` 文件中管理所有的 MDX 文件（==避免麻烦，contents 内的文件夹和文件禁止使用中文==），并且使用动态路由的方式，在浏览器中通过`跟域名/blog/*` 来访问。（就像 pages router 模式下一样可以嵌套，同时也可以使用动态路由，如 `/src/contents/test/test.mdx` 可以通过 `/blog/test/test` 访问）
-- 使用  next-mdx-remote 来实现，它是一个用于 Next.js 的库，专门用于在服务器端（Server Side）加载和渲染 MDX 文件。支持将 Markdown/MDX 内容通过服务端渲染传递到前端页面，同时允许在运行时动态渲染组件。
-- [完整代码](https://github.com/qianjhv/qianjhv.github.io/tree/4923bd42f60b7db319858bb45d2da87e0d796e8b)
+4. 前面的三个步骤是完全按照官方文档来的，现在对其进行扩展，比如希望在 `/src/contents/` 文件中管理所有的 MDX 文件（**由于 URL 中文需要额外处理，避免麻烦，contents 内的文件夹和文件禁止使用中文**），并且使用动态路由的方式，在浏览器中通过`跟域名/blog/*` 来访问。（就像 pages router 模式下一样可以嵌套，同时也可以使用动态路由，如 `/src/contents/test/test.mdx` 可以通过 `/blog/test/test` 访问）
+- 使用  [next-mdx-remote](https://github.com/hashicorp/next-mdx-remote) 来实现，它是一个用于 Next.js 的库，专门用于在服务器端（Server Side）加载和渲染 MDX 文件。支持将 Markdown/MDX 内容通过服务端渲染传递到前端页面，同时允许在运行时动态渲染组件。
+- [核心代码](https://github.com/qianjhv/qianjhv.github.io/blob/4923bd42f60b7db319858bb45d2da87e0d796e8b/src/app/blog/%5B...slug%5D/page.tsx)
 
 ```shell
 # 安装 next-mdx-remote
@@ -223,7 +223,7 @@ a {
 
 ## remark 和 rehype
 
-使用 remark 和 rehype 生态系统进行扩展，如 frontmatter，markdown 语法扩展（GFM），数学公式支持（Katex），代码语法高亮（rehype-pretty-code），清理并安全化 HTML（rehype-sanitize），代码压缩（rehype-minify）等等。
+使用 [remark](https://github.com/remarkjs/remark) 和 [rehype](https://github.com/rehypejs/rehype) 生态系统进行扩展，如 frontmatter，markdown 语法扩展（GFM），数学公式支持（Katex），代码语法高亮（rehype-pretty-code），清理并安全化 HTML（rehype-sanitize），代码压缩（rehype-minify）等等。
 
 ```shell
 # 安装

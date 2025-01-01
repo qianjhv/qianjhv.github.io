@@ -11,6 +11,9 @@ import rehypeSanitize, { defaultSchema } from 'rehype-sanitize';
 import rehypeMinifyWhitespace from 'rehype-minify-whitespace';
 import rehypeMinifyCssStyle from 'rehype-minify-css-style';
 
+import { useMDXComponents } from 'mdx-components';
+import { use } from 'react';
+
 const extendedSchema = {
   ...defaultSchema,
   tagNames: [
@@ -80,6 +83,7 @@ export default async function BlogPost({ params }: PageProps) {
   const { content: mdxContent } = matter(fileContent);
   const { content: compiledContent } = await compileMDX({
     source: mdxContent,
+    components: useMDXComponents({}),
     options: {
       mdxOptions: {
       remarkPlugins: [remarkGfm, remarkMath],
