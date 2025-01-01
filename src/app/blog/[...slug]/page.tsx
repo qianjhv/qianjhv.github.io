@@ -12,7 +12,6 @@ import rehypeMinifyWhitespace from 'rehype-minify-whitespace';
 import rehypeMinifyCssStyle from 'rehype-minify-css-style';
 
 import { useMDXComponents } from 'mdx-components';
-import { use } from 'react';
 
 const extendedSchema = {
   ...defaultSchema,
