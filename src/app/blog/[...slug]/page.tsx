@@ -46,6 +46,11 @@ const extendedSchema = {
   },
 };
 
+const MyComponents = () => {
+  const components = useMDXComponents({});
+  return components;
+};
+
 type PageProps = {
   params: Promise<{
     slug: string[]
@@ -82,7 +87,7 @@ export default async function BlogPost({ params }: PageProps) {
   const { content: mdxContent } = matter(fileContent);
   const { content: compiledContent } = await compileMDX({
     source: mdxContent,
-    components: useMDXComponents({}),
+    components: MyComponents(),
     options: {
       mdxOptions: {
       remarkPlugins: [remarkGfm, remarkMath],
