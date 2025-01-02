@@ -47,7 +47,7 @@ function getNestedBlogPosts(dir: string): { slug: string; }[] {
 }
 
 export default function Blog() {
-  const blogLists = getNestedBlogPosts(path.join(process.cwd(), 'src/contents'));
+  const blogLists: Post[] = getNestedBlogPosts(path.join(process.cwd(), 'src/contents'));
 
   return (
     <main className="max-w-[720px] mx-auto px-8">
