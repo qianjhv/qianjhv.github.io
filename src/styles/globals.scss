@@ -5,7 +5,7 @@
 :root {
 	--background-color: #fafafa;
 	--text-color: #000000;
-	--link-color: #1e90ff;
+	--link-color: #5BC2E7;	// #002FA7
 }
 
 [class='dark'] {
@@ -27,10 +27,8 @@ body {
 }
 
 a {
-  color: var(--link-color);
+  color: #5BC2E7;
 }
-
-
 
 
 @layer utilities {
