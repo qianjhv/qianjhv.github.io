@@ -1,0 +1,172 @@
+{
+  "main": {
+    "id": "9fac7a498c8cc8fd",
+    "type": "split",
+    "children": [
+      {
+        "id": "1a651a7d1ac3322a",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "366172452b503461",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "how-i-made-this-blog.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "how-i-made-this-blog"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "222aafef96ad7a37",
+    "type": "split",
+    "children": [
+      {
+        "id": "ea3630526356407f",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "e5bd40b518a9ca0f",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "6b2fde0f2b7c4974",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "8805ee31bb83fb87",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "right": {
+    "id": "a4e603c8976bdec3",
+    "type": "split",
+    "children": [
+      {
+        "id": "4d1a156ea5cdf7dd",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "34f32f69df3fe8ba",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "how-i-made-this-blog.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for how-i-made-this-blog"
+            }
+          },
+          {
+            "id": "4fd604454302a353",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "how-i-made-this-blog.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from how-i-made-this-blog"
+            }
+          },
+          {
+            "id": "e2f5f5942265d5b2",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "f83a5f36d4c0d279",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "how-i-made-this-blog.md"
+              },
+              "icon": "lucide-list",
+              "title": "Outline of how-i-made-this-blog"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false
+    }
+  },
+  "active": "366172452b503461",
+  "lastOpenFiles": [
+    "Untitled.md",
+    "how-i-made-this-blog.md",
+    "how-i-made-this-blog.mdx"
+  ]
+}

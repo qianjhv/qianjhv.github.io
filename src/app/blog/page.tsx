@@ -4,7 +4,6 @@ import Link from 'next/link';
 import matter from 'gray-matter';
 
 import Image from 'next/image';
-import { ToggleThemes } from '@/lib/ThemeProviders';
 
 interface Post {
   slug: string;
@@ -50,28 +49,34 @@ export default function Blog() {
   const blogLists: Post[] = getNestedBlogPosts(path.join(process.cwd(), 'src/contents'));
 
   return (
-    <main className="max-w-[720px] mx-auto px-8">
-      <header className="my-10">
-        <div className="flex justify-between mb-8 text-3xl font-bold">
-          <Link href="/" className="text-black">qianjh.me</Link>
-          <ToggleThemes />
-        </div>
-        <div className="flex">
-          <Image src="/android-chrome-512x512.png" alt="avatar" width={56} height={56} className="rounded-full inline-block"/>
-          <span className="max-w-[300px] ml-10">
-            Halo! welcome to my blog, find me on github: <a href="https://github.com/qianjhv">qianjhv</a> / X: <a href="https://x.com/qianjhv">@qianjhv</a>
-          </span>
-        </div>
-      </header>
+    <>
+      <aside className="flex items-center mb-20">
+        <Image src="/android-chrome-512x512.png" alt="avatar" width={56} height={56} className="rounded-full inline-block h-14"/>
+        <p className="ml-10 max-w-[300px]">
+          Halo! welcome to my blog, find me on github: <a href="https://github.com/qianjhv">qianjhv</a>
+          / X: <a href="https://x.com/qianjhv">@qianjhv</a>
+        </p>
+      </aside>
       <ul>
         {blogLists.map((blog) => (
-          <li key={blog.slug} className="text-3xl font-bold">
+          <li key={blog.slug} className="text-3xl font-bold my-5">
             <Link href={`/blog/${blog.slug}`}>
               {blog.title || blog.slug}
             </Link>
+            <p className="font-serif text-base text-gray-400 font-normal mt-2">
+              <time>
+                {
+                  blog.date && new Date(blog.date).toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                  })
+                }
+              </time>
+            </p>
           </li>
         ))}
       </ul>
-    </main>
+    </>
   );
 }

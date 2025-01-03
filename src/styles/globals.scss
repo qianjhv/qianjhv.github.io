@@ -11,7 +11,7 @@
 [class='dark'] {
 	--background-color: #464545;
 	--text-color: #e0e0e0;
-	--link-color: #bb86fc;
+	--link-color: #5BC2E7;
 
 	// dark code highlight
 	code[data-theme*=" "],
@@ -56,7 +56,7 @@ a {
 				width: 3px;
 				height: calc(1.2em - 11px);
 				border-radius: 8px;
-				background-color: #f5a524;
+				background-color: #5BC2E7;
 				transform: translateY(2px);
 			}
 		}
@@ -74,7 +74,7 @@ a {
 				width: 3px;
 				height: calc(1.2em - 11px);
 				border-radius: 8px;
-				background-color: #fbdba7;
+				background-color: #5BC2E7;
 				transform: translateY(2px);
 			}
 		}
@@ -92,7 +92,7 @@ a {
 				width: 3px;
 				height: calc(1.2em - 11px);
 				border-radius: 8px;
-				background-color: #efda96;
+				background-color: #5BC2E7;
 				transform: translateY(2px);
 			}
 		}
@@ -104,7 +104,7 @@ a {
 
 		b, strong {
 			font-weight: normal;
-			background-color: #f3debc;
+			background-color: #5BC2E7;
 		}
 
 		ul, ol {
@@ -153,16 +153,16 @@ a {
 
 		figure pre{
 			background-color: #f3f4f6;
-			padding: 10px;
+			padding: 12px 16px;
 			border-radius: 4px;
 		}
 
 		code {
 			@apply font-mono;
-			background-color: #eeeef3;
+			background-color: rgb(240, 238, 240);
 			border-radius: 4px;
 			padding: 0.1em 0.25em;
-			color: rgb(210, 96, 172);
+			color: #434344;
 		}
 
 		p code,
@@ -209,8 +209,13 @@ a {
 			background-color: #626161;
 		}
 
+		code {
+			background-color: #515152;
+			color: rgb(199, 198, 199);
+		}
+
 		figure pre{
-			background-color: #40413d;
+			background-color: #515152;
 		}
 
 		blockquote {
@@ -219,7 +224,7 @@ a {
 		}
 
 		b, strong {
-			background-color: #88755a;
+			background-color: #5BC2E7;
 		}
 
 		table thead {
@@ -239,24 +244,6 @@ figure pre {
 	max-width: 100%;
 }
 
-pre code {
-	counter-reset: line;
-}
-
-code > [data-line]::before {
-  counter-increment: line;
-  content: counter(line);
-  display: inline-block;
-  width: 1rem;
-  margin-right: 1rem;
-  text-align: right;
-  color: gray;
-}
-
-code > [data-line] {
-  padding-left: 0.1rem;
-}
-
 code[data-theme*=" "],
 code[data-theme*=" "] span {
   color: var(--shiki-light);
@@ -264,8 +251,26 @@ code[data-theme*=" "] span {
 }
 
 code[data-theme*=" "] span[data-highlighted-line] {
-  background-color: rgba(200, 200, 255, 0.18) !important;
+	background-color: rgba(200, 200, 255, 0.18) !important;
   border-left: 2px solid #60A5FA;
   border-radius: 3px;
 }
 
+// show code line numbers
+// pre code {
+// 	counter-reset: line;
+// }
+
+// code > [data-line]::before {
+// 	counter-increment: line;
+// 	content: counter(line);
+// 	display: inline-block;
+// 	width: 1rem;
+// 	margin-right: 1rem;
+// 	text-align: right;
+// 	color: gray;
+// }
+
+// code > [data-line] {
+// 	padding-left: 0.1rem;
+// }
