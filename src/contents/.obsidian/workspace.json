@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "how-i-made-this-blog.md",
+                "file": "the-modern-javascript-tutorial.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "how-i-made-this-blog"
+              "title": "the-modern-javascript-tutorial"
             }
           }
         ]
@@ -73,7 +73,8 @@
               "title": "Bookmarks"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
@@ -165,8 +166,8 @@
   },
   "active": "366172452b503461",
   "lastOpenFiles": [
-    "Untitled.md",
     "how-i-made-this-blog.md",
+    "the-modern-javascript-tutorial.md",
     "how-i-made-this-blog.mdx"
   ]
 }
