@@ -323,4 +323,62 @@ const mdxContent = fs.readFileSync(filePath, 'utf-8');
 const { data, content } = matter(mdxContent);
 ```
 
-## 未完待续...
+## 集成第三方评论系统 - Giscus
+
+1. 在 GitHub 仓库中启用 Discussions 功能。
+2. 访问 [Giscus 官网](https://giscus.app/)，阅读它的配置选项。
+3. 使用 `.env.local` 文件，在 `.gitignore` 中添加此文件，以免较敏感信息直接显示在源代码之中。
+
+```js
+
+// 创建一个评论组件 src/lib/Giscus.tsx
+// 核心代码
+'use client';
+import React, { useEffect, useRef } from 'react';
+
+export default function Giscus() {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!containerRef.current || containerRef.current.hasChildNodes()) return;
+
+    const script = document.createElement('script');
+    const config = {
+      src: 'https://giscus.app/client.js',
+      'data-repo': process.env.NEXT_PUBLIC_GISCUS_REPO!,
+      'data-repo-id': process.env.NEXT_PUBLIC_GISCUS_REPO_ID!,
+      'data-category': process.env.NEXT_PUBLIC_GISCUS_CATEGORY!,
+      'data-category-id': process.env.NEXT_PUBLIC_GISCUS_CATEGORY_ID!,
+      'data-mapping': 'pathname',
+      'data-strict': '0',
+      'data-reactions-enabled': '1',
+      'data-emit-metadata': '0',
+      'data-input-position': 'bottom',
+      'data-theme': resolvedTheme === 'dark' ? 'catppuccin_macchiato' : 'light',
+      'data-lang': 'en',
+      crossorigin: 'anonymous',
+      async: 'true'
+    };
+
+    Object.entries(config).forEach(([key, value]) => {
+      script.setAttribute(key, value);
+    });
+
+    containerRef.current.appendChild(script);
+
+    return () => {
+      script.remove();
+    };
+  }, []);
+
+  return <div ref={containerRef} className="mt-10" />;
+}
+
+// .env.local
+NEXT_PUBLIC_GISCUS_REPO=YOUR_USERNAME/YOUR_REPO
+NEXT_PUBLIC_GISCUS_REPO_ID=YOUR_REPO_ID
+NEXT_PUBLIC_GISCUS_CATEGORY=Announcements
+NEXT_PUBLIC_GISCUS_CATEGORY_ID=YOUR_CATEGORY_ID
+```
+
+## Stay tuned...
