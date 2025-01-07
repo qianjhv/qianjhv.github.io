@@ -12,6 +12,7 @@ import rehypeMinifyWhitespace from 'rehype-minify-whitespace';
 import rehypeMinifyCssStyle from 'rehype-minify-css-style';
 
 import { useMDXComponents } from 'mdx-components';
+import Giscus from '@/lib/Giscus'; 
 
 const extendedSchema = {
   ...defaultSchema,
@@ -116,9 +117,12 @@ export default async function BlogPost({ params }: PageProps) {
   });
 
   return (
-    <main className='mdx-typography-default dark:mdx-typography-dark max-w-[768px] mx-auto px-2'>
+    <div className='mdx-typography-default dark:mdx-typography-dark max-w-[768px] mx-auto px-2'>
       {compiledContent}
-    </main>
+      <div className="my-16">
+        <Giscus />
+      </div>
+    </div>
   );
 }
 
