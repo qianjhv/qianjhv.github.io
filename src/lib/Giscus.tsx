@@ -19,7 +19,7 @@ export default function Giscus() {
       'data-category-id': process.env.NEXT_PUBLIC_GISCUS_CATEGORY_ID!,
       'data-mapping': 'pathname',
       'data-strict': '0',
-      'data-reactions-enabled': '1',
+      'data-reactions-enabled': '0',
       'data-emit-metadata': '0',
       'data-input-position': 'bottom',
       'data-theme': resolvedTheme === 'dark' ? 'catppuccin_macchiato' : 'light',
@@ -27,7 +27,7 @@ export default function Giscus() {
       crossorigin: 'anonymous',
       async: 'true'
     };
-    
+
     Object.entries(config).forEach(([key, value]) => {
       script.setAttribute(key, value);
     });
