@@ -7,11 +7,9 @@ import remarkGfm from "remark-gfm";
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import rehypePrettyCode from "rehype-pretty-code";
-import rehypeSanitize from 'rehype-sanitize';
 import rehypeMinifyWhitespace from 'rehype-minify-whitespace';
 import rehypeMinifyCssStyle from 'rehype-minify-css-style';
 
-import extendedSchema from '@/lib/ExtendRehypeSanitizeSchema'
 import { useMDXComponents } from 'mdx-components';
 import Giscus from '@/lib/Giscus';
 
@@ -77,7 +75,6 @@ export default async function BlogPost({ params }: PageProps) {
           }],
         }],
         rehypeKatex,
-        [rehypeSanitize, extendedSchema],
         rehypeMinifyCssStyle,
         rehypeMinifyWhitespace, 
       ]},

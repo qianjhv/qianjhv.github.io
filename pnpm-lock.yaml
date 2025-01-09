@@ -53,9 +53,6 @@ importers:
       rehype-pretty-code:
         specifier: ^0.14.0
         version: 0.14.0(shiki@1.24.4)
-      rehype-sanitize:
-        specifier: ^6.0.0
-        version: 6.0.0
       remark-gfm:
         specifier: ^4.0.0
         version: 4.0.0
@@ -1319,9 +1316,6 @@ packages:
   hast-util-parse-selector@4.0.0:
     resolution: {integrity: sha512-wkQCkSYoOGCRKERFWcxMVMOcYE2K1AaNLU8DXS9arxnLOUEWbOXKXiJUNzEpqZ3JOKpnha3jkFrumEjVliDe7A==}
 
-  hast-util-sanitize@5.0.2:
-    resolution: {integrity: sha512-3yTWghByc50aGS7JlGhk61SPenfE/p1oaFeNwkOOyrscaOkMGrcW9+Cy/QAIOBpZxP1yqDIzFMR0+Np0i0+usg==}
-
   hast-util-to-estree@3.1.0:
     resolution: {integrity: sha512-lfX5g6hqVh9kjS/B9E2gSkvHH4SZNiQFiqWS0x9fENzEl+8W12RqdRxX6d/Cwxi30tPQs3bIO+aolQJNp1bIyw==}
 
@@ -2084,9 +2078,6 @@ packages:
 
   rehype-recma@1.0.0:
     resolution: {integrity: sha512-lqA4rGUf1JmacCNWWZx0Wv1dHqMwxzsDWYMTowuplHF3xH0N/MmrZ/G3BDZnzAkRmxDadujCjaKM2hqYdCBOGw==}
-
-  rehype-sanitize@6.0.0:
-    resolution: {integrity: sha512-CsnhKNsyI8Tub6L4sm5ZFsme4puGfc6pYylvXo1AeqaGbjOYyzNv3qZPwvs0oMJ39eryyeOdmxwUIo94IpEhqg==}
 
   remark-gfm@4.0.0:
     resolution: {integrity: sha512-U92vJgBPkbw4Zfu/IiW2oTZLSL3Zpv+uI7My2eq8JxKgqraFdU8YUGicEJCEgSbeaG+QDFqIcwwfMTOEelPxuA==}
@@ -3905,12 +3896,6 @@ snapshots:
     dependencies:
       '@types/hast': 3.0.4
 
-  hast-util-sanitize@5.0.2:
-    dependencies:
-      '@types/hast': 3.0.4
-      '@ungap/structured-clone': 1.2.1
-      unist-util-position: 5.0.0
-
   hast-util-to-estree@3.1.0:
     dependencies:
       '@types/estree': 1.0.6
@@ -5065,11 +5050,6 @@ snapshots:
       hast-util-to-estree: 3.1.0
     transitivePeerDependencies:
       - supports-color
-
-  rehype-sanitize@6.0.0:
-    dependencies:
-      '@types/hast': 3.0.4
-      hast-util-sanitize: 5.0.2
 
   remark-gfm@4.0.0:
     dependencies:

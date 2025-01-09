@@ -21,7 +21,6 @@
 		"rehype-minify-css-style": "^4.0.1",
 		"rehype-minify-whitespace": "^6.0.2",
 		"rehype-pretty-code": "^0.14.0",
-		"rehype-sanitize": "^6.0.0",
 		"remark-gfm": "^4.0.0",
 		"remark-math": "^6.0.0",
 		"shiki": "^1.24.4"
