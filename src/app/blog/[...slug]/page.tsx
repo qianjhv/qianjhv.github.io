@@ -7,45 +7,13 @@ import remarkGfm from "remark-gfm";
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import rehypePrettyCode from "rehype-pretty-code";
-import rehypeSanitize, { defaultSchema } from 'rehype-sanitize';
+import rehypeSanitize from 'rehype-sanitize';
 import rehypeMinifyWhitespace from 'rehype-minify-whitespace';
 import rehypeMinifyCssStyle from 'rehype-minify-css-style';
 
+import extendedSchema from '@/lib/ExtendRehypeSanitizeSchema'
 import { useMDXComponents } from 'mdx-components';
-import Giscus from '@/lib/Giscus'; 
-
-const extendedSchema = {
-  ...defaultSchema,
-  tagNames: [
-    ...(defaultSchema.tagNames ?? []),
-    'section',
-    'sup',
-    'math',
-    'semantics',
-    'mrow',
-    'mi',
-    'mn',
-    'mo',
-    'msup',
-    'annotation',
-    'span',
-    'svg',
-    'path',
-    'figure',
-    'code'
-  ],
-  attributes: {
-    ...defaultSchema.attributes,
-    '*': ['className', 'style', 'class', 'data-line'],
-    span: ['class', 'style', 'data*'],
-    math: ['xmlns', 'display'],
-    svg: ['xmlns', 'viewBox', 'width', 'height', 'style', 'preserveAspectRatio'],
-    path: ['d', 'fill', 'stroke', 'stroke-width'],
-    figure: ['data*'],
-    pre: ['className', 'class', 'data*', 'dir'],
-    code: ['className', 'class', 'data-line-numbers', 'data-line-numbers-max-digits', 'data*'],
-  },
-};
+import Giscus from '@/lib/Giscus';
 
 const MyComponents = () => {
   const components = useMDXComponents({});
@@ -83,7 +51,7 @@ export default async function BlogPost({ params }: PageProps) {
   if (!filePath) {
     return { notFound: true };
   }
-
+  
   const fileContent = fs.readFileSync(filePath, 'utf-8');
   const { content: mdxContent } = matter(fileContent);
   const { content: compiledContent } = await compileMDX({
