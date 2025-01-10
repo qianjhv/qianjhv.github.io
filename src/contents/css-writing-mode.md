@@ -14,9 +14,7 @@ tags:
   <p>无车无马亦轻狂。</p>
 </div>
 
-记录一下在使用 `writing-mode` 属性时，遇到的一些问题。
-
-## MDN - writing-mode
+> 记录一下在使用 `writing-mode` 属性时，遇到的一些问题。
 
 在网页中，我们可能遇到需要为竖排文本（如中文、日语、韩语和蒙古语）赋予样式的情况。CSS 提供了`writing-mode` 属性，它定义了文本水平或垂直排布以及在块级元素中文本的行进方向。
 
@@ -43,14 +41,20 @@ writing-mode: unset;
 
 <hr />
 
-<p style={{writingMode: "vertical-rl"}}>竖直书写，从右到左，下一垂直行位于上一行右侧。</p>
-<p style={{writingMode: "vertical-rl"}}>HELLO</p>
+<div style={{writingMode: "vertical-rl"}}>
+  <p>竖直书写，从右到左，下一垂直行位于上一行右侧。</p>
+  <p style={{letterSpacing: '0'}}>竖直书写，从右到左，下一垂直行位于上一行右侧。</p>
+  <p>HELLO</p>
+</div>
 
-在上面你可能发现一堆奇怪的东西和一个垂直排列的 HELLO，那堆奇怪的东西是挤在了一起的汉字。它们的 html 代码在下面：
+在上面你可能发现一堆奇怪的东西和一个垂直排列的 HELLO，那堆奇怪的东西是挤在了一起的汉字（由于浏览器渲染引擎和字体的默认处理在不同设备上的差异，在手机端很可能显示正常，所有这里为了演示手动展示一堆挤在一起的汉字）。它们的 html 代码在下面：
 
 ```html
-<p style={{writingMode: "vertical-rl"}}>竖直书写，从右到左，下一垂直行位于上一行右侧。</p>
-<p style={{writingMode: "vertical-rl"}}>HELLO</p>
+<div style={{writingMode: "vertical-rl"}}>
+  <p>竖直书写，从右到左，下一垂直行位于上一行右侧。</p>
+  <p style={{letterSpacing: '0'}}>竖直书写，从右到左，下一垂直行位于上一行右侧。</p>
+  <p>HELLO</p>
+</div>
 ```
 
 为什么汉字使用了这个属性之后会挤在一起，而英文却正常显示？通常字体设计本身不会显式设置 `letter-spacing`，而是依赖于字体设计师在字形设计阶段对字符之间的自然间距进行优化。对于汉字来说每个汉字都是方块字，默认占用相同的空间。在垂直排版时，汉字之间默认没有字距，因此看起来会挤在一起。对于英文字母来说天然具有不同的高度和形状（比如'p'和'b'的上下延伸部分），当它们垂直排列时，这种字形特点自然形成了视觉上的间隔。
@@ -76,7 +80,6 @@ text-orientation: upright; /* 将水平书写的字符自然布局（直排） *
 <br />
 <br />
 <hr />
-> 参考：
->
-> https://developer.mozilla.org/en-US/docs/Web/CSS/writing-mode<br />
-> https://developer.mozilla.org/en-US/docs/Web/CSS/text-orientation
+> 参考：<br />
+> [MDN - writing-mode](https://developer.mozilla.org/en-US/docs/Web/CSS/writing-mode)<br />
+> [MDN - text-orientation](https://developer.mozilla.org/en-US/docs/Web/CSS/text-orientation)
