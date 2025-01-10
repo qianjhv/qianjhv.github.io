@@ -52,7 +52,7 @@ writing-mode: unset;
 ```html
 <div style={{writingMode: "vertical-rl"}}>
   <p>竖直书写，从右到左，下一垂直行位于上一行右侧。</p>
-  <p style={{letterSpacing: '0'}}>竖直书写，从右到左，下一垂直行位于上一行右侧。</p>
+  <p style={{letterSpacing: '-2em'}}>竖直书写，从右到左，下一垂直行位于上一行右侧。</p>
   <p>HELLO</p>
 </div>
 ```
