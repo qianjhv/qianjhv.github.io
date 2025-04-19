@@ -2,7 +2,8 @@
 title: 我是如何制作这个博客的
 date: 2025-1-1
 describtion: 这是一篇使用 Nextjs 制作一个静态博客的记录，以及过程当中遇到的一些问题和感想，当然还有一些使用规则。
-tags: []
+tags:
+  - web
 ---
 
 > “我的作品完成了。任凭朱庇特的怒气，任凭刀、火，任凭时光的蚕蚀，都不能毁灭我的作品。时光只能消毁我的肉身，死期愿意来就请它来吧，来终结我这飘摇的寿命。但是我的精萃部分却是不朽的，它将与日月同寿，我的声名也将永不磨灭。罗马的势力征服到哪里，那里我的作品就会被人们诵读。如果诗人的预言不爽，我的声名必将千载流传。”  -- 奥维德
@@ -219,6 +220,36 @@ a {
 }
 ```
 
+## markdown 排版
+
+利用 tailwindcss 的 typography 插件，可以对 markdown 进行排版。但是要使用自定义样式，需要在 tailwindcss 的配置文件中写入一堆样式配置，而且感觉也不怎么灵活度。所以可以利用 tailwindcss 的 `@layout` 对 markdown 进行排版，以及实现 `dark` 指令切换排版暗色模式，配合 sass，核心代码如下。
+
+```css
+// globals.scss
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .mdx-typography-default {
+	font-size: 16px;
+	
+	h1 {
+		font-size: 2em;
+	}
+  }
+	
+  .dark .mdx-typography-dark {
+	  a:hover {
+		background-color: #626161;
+	  }
+  }
+}
+
+// 使用
+<div className='mdx-typography-default dark:mdx-typography-dark'>
+</div>
+```
 ## remark 和 rehype
 
 使用 [remark](https://github.com/remarkjs/remark) 和 [rehype](https://github.com/rehypejs/rehype) 生态系统进行扩展，如 frontmatter，markdown 语法扩展（GFM），数学公式支持（Katex），代码语法高亮（rehype-pretty-code），清理并安全化 HTML（rehype-sanitize），代码压缩（rehype-minify）等等。
@@ -235,6 +266,8 @@ import "katex/dist/katex.min.css";
 # 使用其中一些就行：(最重要的 rehype-minify-whitespace)
 # rehype-pretty-code 生成的代码可以使用 `transformers` 选项进行代码压缩
 pnpm install rehype-minify-whitespace rehype-minify-css-style
+
+# 对于静态博客，可以不使用 rehype-sanitize，踩了一堆坑
 ```
 
 ```ts

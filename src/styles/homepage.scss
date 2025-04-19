@@ -11,7 +11,7 @@
 		writing-mode: vertical-lr;
 		display: block;
 		padding: 1em;
-		height: 96%;
+		height: 96vh;
 		margin: 10px auto;
 
 		.title {
@@ -38,54 +38,60 @@
 
 			div {
 				font-size: 4.5rem;
+
+				text-orientation: upright;
 			}
 
 			p {
 				padding-bottom: 6rem; 
 				font-size: 2.25rem;
 				text-align: end;
+
+				text-orientation: upright;
 			}
 		}
 	}
 
 }
 
-@media (max-width: 1024px) {
-  .homepage {
+// @media (max-width: 540px) {
+//   .homepage {
 		
-		.contents {
-			writing-mode: horizontal-tb;
-			margin: 0;
-			padding: 0;
-			height: 100%;
+// 		.contents {
+// 			writing-mode: horizontal-tb;
+// 			-webkit-writing-mode: horizontal-tb;
+//       -ms-writing-mode: horizontal-tb;
+// 			margin: 0;
+// 			padding: 0;
+// 			height: 100vh;
 			
-			.title {
-				display: block;
-				text-align: center;
+// 			.title {
+// 				display: block;
+// 				text-align: center;
 	
-				h1 {
-					font-size: 2.5rem;
-				}
+// 				h1 {
+// 					font-size: 2.5rem;
+// 				}
 	
-				.bloglink {
-					font-size: 1.8rem;
-					padding: 0;
-				}
-			}
+// 				.bloglink {
+// 					font-size: 1.8rem;
+// 					padding: 0;
+// 				}
+// 			}
 	
-			.article {
+// 			.article {
 	
-				div {
-					font-size: 1.96rem;
-					padding: 0 10px;
-				}
+// 				div {
+// 					font-size: 1.96rem;
+// 					padding: 0 10px;
+// 				}
 	
-				p {
-					font-size: 1.8rem;
-					padding: 0;
-				}
-			}
-		}
+// 				p {
+// 					font-size: 1.8rem;
+// 					padding: 0;
+// 				}
+// 			}
+// 		}
 	
-	}
-}
+// 	}
+// }
