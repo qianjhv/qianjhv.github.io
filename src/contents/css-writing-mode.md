@@ -42,8 +42,8 @@ writing-mode: unset;
 <hr />
 
 <div style={{writingMode: "vertical-rl"}}>
-  <p>竖直书写，从右到左，下一垂直行位于上一行右侧。</p>
-  <p style={{letterSpacing: '-1em'}}>竖直书写，从右到左，下一垂直行位于上一行右侧。</p>
+  <p style={{writingMode: "vertical-rl"}}>竖直书写从右到左下一行垂直位于上一行右侧。</p>
+  <p style={{letterSpacing: '1.2em'}}>竖直书写从右到左下一行垂直位于上一行右侧。</p>
   <p>HELLO</p>
 </div>
 
@@ -51,9 +51,9 @@ writing-mode: unset;
 
 ```html
 <div style={{writingMode: "vertical-rl"}}>
-  <p>竖直书写，从右到左，下一垂直行位于上一行右侧。</p>
-  <p style={{letterSpacing: '-2em'}}>竖直书写，从右到左，下一垂直行位于上一行右侧。</p>
-  <p style={{letterSpacing: '-1em'}}>HELLO</p>
+  <p style={{writingMode: "vertical-rl"}}>竖直书写，从右到左，下一垂直行位于上一行右侧。</p>
+  <p style={{letterSpacing: '-1em'}}>竖直书写，从右到左，下一垂直行位于上一行右侧。</p>
+  <p>HELLO</p>
 </div>
 ```
 
