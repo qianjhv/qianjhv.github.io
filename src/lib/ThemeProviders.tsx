@@ -3,7 +3,6 @@
 import { useEffect, useState } from 'react';
 
 import { ThemeProvider, useTheme } from 'next-themes';
-import { NextUIProvider } from "@nextui-org/react";
 
 // 定义亮模式、暗模式和系统模式的图标
 const lightIcon = (
@@ -32,7 +31,7 @@ const darkIcon = (
 );
 
 
-export function Providers({ children }) {
+export function ThemesProviders({ children }) {
 
   const [mounted, setMounted] = useState(false);
 
@@ -53,14 +52,12 @@ export function Providers({ children }) {
 
   return (
     <ThemeProvider attribute="class" defaultTheme="system">
-      <NextUIProvider>
-        {children}
-      </NextUIProvider>
+      {children}
     </ThemeProvider>
   );
 }
 
-export const ThemeChanger = () => {
+export const ToggleThemes = () => {
   const { theme, setTheme } = useTheme();;
   const currentIcon = theme === 'dark' ? darkIcon : theme === 'light' ? lightIcon : systemIcon;
 

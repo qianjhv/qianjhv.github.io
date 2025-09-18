@@ -2,7 +2,6 @@
   "compilerOptions": {
     "baseUrl": "src/",
     "paths": {
-      "@/*": ["*"],
       "@/styles/*": ["styles/*"],
       "@/lib/*": ["lib/*"],
       "@/ui/*": ["ui/*"],
@@ -36,8 +35,8 @@
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx",
-    "tailwind.config.ts",
-    "next.config.mjs",
+    "next.config.ts",
+    "next.config.mjs"
   ],
   "exclude": [
     "node_modules"

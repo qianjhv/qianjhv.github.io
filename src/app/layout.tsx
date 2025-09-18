@@ -1,20 +1,20 @@
 import "@/styles/globals.scss";
 import "katex/dist/katex.min.css";
 
-import { Providers } from "@/lib/ThemeProviders";
+import { ThemesProviders } from "@/lib/ThemeProviders";
 
 export const metadata = {
   title: 'qianjh.me',
-  description: 'Personal website',
+  description: 'personal nextjs blog',
 }
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html>
       <body>
-        <Providers>
+        <ThemesProviders>
           {children}
-        </Providers>
+        </ThemesProviders>
       </body>
     </html>
   );
