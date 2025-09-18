@@ -20,4 +20,9 @@ pnpm-debug.log*
 
 # generated types
 
+# obsidian
+Untitled.md
+src/contents/.obsidian/
 
+# 
+.env*.local
