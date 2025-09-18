@@ -51,7 +51,7 @@ export default async function BlogPost({ params }: PageProps) {
   }
   
   const fileContent = fs.readFileSync(filePath, 'utf-8');
-  const { content: mdxContent } = matter(fileContent);
+  const { content: mdxContent, data } = matter(fileContent);
   const { content: compiledContent } = await compileMDX({
     source: mdxContent,
     components: MyComponents(),
@@ -83,6 +83,7 @@ export default async function BlogPost({ params }: PageProps) {
 
   return (
     <div className='mdx-typography-default dark:mdx-typography-dark max-w-[768px] mx-auto px-2'>
+      <h1>{data.title}</h1>
       {compiledContent}
       <div className="my-16">
         <Giscus />

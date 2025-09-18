@@ -54,7 +54,7 @@ export default function Blog() {
         <Image src="/android-chrome-512x512.png" alt="avatar" width={56} height={56} className="rounded-full inline-block h-14"/>
         <p className="ml-10 max-w-[300px]">
           Halo! welcome to my blog, find me on github: <a href="https://github.com/qianjhv">qianjhv</a>
-          / X: <a href="https://x.com/qianjhv">@qianjhv</a>
+          &nbsp;\ X: <a href="https://x.com/qianjhv">@qianjhv</a>
         </p>
       </aside>
       <ul>
