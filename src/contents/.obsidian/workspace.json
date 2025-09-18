@@ -11,10 +11,14 @@
             "id": "3bdcf52f95fffe4e",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "how-i-made-this-blog.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "New tab"
+              "title": "how-i-made-this-blog"
             }
           }
         ]
@@ -36,7 +40,8 @@
             "state": {
               "type": "file-explorer",
               "state": {
-                "sortOrder": "alphabetical"
+                "sortOrder": "alphabetical",
+                "autoReveal": false
               },
               "icon": "lucide-folder-closed",
               "title": "Files"
@@ -132,9 +137,14 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {},
+              "state": {
+                "file": "css-writing-mode.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
               "icon": "lucide-list",
-              "title": "Outline"
+              "title": "Outline of css-writing-mode"
             }
           }
         ],
@@ -142,10 +152,12 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
+      "bases:Create new base": false,
       "switcher:Open quick switcher": false,
       "graph:Open graph view": false,
       "canvas:Create new canvas": false,
@@ -156,10 +168,10 @@
   },
   "active": "3bdcf52f95fffe4e",
   "lastOpenFiles": [
-    "how-i-made-this-blog.md",
-    "css-writing-mode.md",
-    "test.md",
     "the-modern-javascript-tutorial.md",
+    "css-writing-mode.md",
+    "how-i-made-this-blog.md",
+    "test.md",
     "how-i-made-this-blog.mdx"
   ]
 }
