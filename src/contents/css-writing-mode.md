@@ -42,16 +42,16 @@ writing-mode: unset;
 <hr />
 
 <div style={{writingMode: "vertical-rl"}}>
-  <p style={{writingMode: "vertical-rl", letterSpacing: '0.2em'}}>竖直书写从右到左下一行垂直位于上一行右侧。</p>
+  <p style={{writingMode: "vertical-rl", letterSpacing: '0.4em'}}>竖直书写从右到左下一行垂直位于上一行右侧。</p>
   <p style={{letterSpacing: '1.2em'}}>竖直书写从右到左下一行垂直位于上一行右侧。</p>
   <p>HELLO</p>
 </div>
 
-在上面你可能发现一堆奇怪的东西和一个垂直排列的 HELLO，那堆奇怪的东西是挤在了一起的汉字（由于浏览器渲染引擎和字体的默认处理在不同设备上的差异，在手机端很可能显示正常，为了演示手动调整一堆挤在一起的汉字）。它们的 html 代码在下面：
+在上面你可能发现一堆奇怪的东西和一个垂直排列的 HELLO，那堆奇怪的东西是挤在了一起的汉字（由于浏览器渲染引擎和字体的默认处理在不同设备上的差异，在手机端很可能显示正常。为了演示手动调整一堆挤在一起的汉字）。它们的 html 代码在下面：
 
 ```html
 <div style={{writingMode: "vertical-rl"}}>
-  <p style={{writingMode: "vertical-rl", letterSpacing: '0.2em'}}>竖直书写从右到左下一行垂直位于上一行右侧。</p>
+  <p style={{writingMode: "vertical-rl", letterSpacing: '0.4em'}}>竖直书写从右到左下一行垂直位于上一行右侧。</p>
   <p style={{letterSpacing: '1.2em'}}>竖直书写从右到左下一行垂直位于上一行右侧。</p>
   <p>HELLO</p>
 </div>
