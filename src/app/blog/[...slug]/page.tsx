@@ -11,6 +11,7 @@ import rehypeMinifyWhitespace from 'rehype-minify-whitespace';
 import rehypeMinifyCssStyle from 'rehype-minify-css-style';
 
 import { useMDXComponents } from 'mdx-components';
+import { notFound } from 'next/navigation';
 import Giscus from '@/lib/Giscus';
 
 const MyComponents = () => {
@@ -47,7 +48,7 @@ export default async function BlogPost({ params }: PageProps) {
   }
 
   if (!filePath) {
-    return { notFound: true };
+    return notFound();
   }
   
   const fileContent = fs.readFileSync(filePath, 'utf-8');
@@ -82,7 +83,7 @@ export default async function BlogPost({ params }: PageProps) {
   });
 
   return (
-    <div className='mdx-typography-default dark:mdx-typography-dark max-w-[768px] mx-auto px-2'>
+    <div className='mdx-typography-default mdx-typography-dark max-w-[768px] mx-auto px-2'>
       <h1>{data.title}</h1>
       {compiledContent}
       <div className="my-16">

@@ -37,7 +37,7 @@ export function getNestedBlogPosts(dir: string): { slug: string; }[] {
     if (stats.isDirectory()) {
       posts = [...posts, ...getNestedBlogPosts(filePath)];
     } else if (fileName.endsWith('.mdx') || fileName .endsWith('.md')) {
-      const fileContents = fs.readFileSync(filePath, 'utf-8');
+      // const fileContents = fs.readFileSync(filePath, 'utf-8');
 
       const slug = filePath
         .replace(process.cwd(), '') // 去掉根路径

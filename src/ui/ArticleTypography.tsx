@@ -1,5 +1,3 @@
-import clsx from "clsx";
-
 type ArticleData = {
   title: string;
   date?: string;
