@@ -31,6 +31,8 @@ type MetadataProps = {
   }>
 }
 
+const postsDirectory = 'posts/';
+
 export const dynamicParams = false;
 
 export default async function BlogPost({ params }: PageProps) {
@@ -40,7 +42,7 @@ export default async function BlogPost({ params }: PageProps) {
   const resolvedParams = await params;
   const slugArray = Array.isArray(resolvedParams.slug) ? resolvedParams.slug : [resolvedParams.slug];
   for (const ext of possibleExtensions) {
-    const potentialPath = path.join(process.cwd(), 'src/contents', ...slugArray) + ext;
+    const potentialPath = path.join(process.cwd(), postsDirectory, ...slugArray) + ext;
     if (fs.existsSync(potentialPath)) {
       filePath = potentialPath;
       break;
@@ -99,7 +101,7 @@ export async function generateMetadata({ params }: MetadataProps) {
   const resolvedParams = await params;
   const slugArray = resolvedParams.slug;
   for (const ext of possibleExtensions) {
-    const potentialPath = path.join(process.cwd(), 'src/contents', ...slugArray) + ext;
+    const potentialPath = path.join(process.cwd(), postsDirectory, ...slugArray) + ext;
     if (fs.existsSync(potentialPath)) {
       filePath = potentialPath;
       break;
@@ -120,7 +122,7 @@ export async function generateMetadata({ params }: MetadataProps) {
 }
 
 export async function generateStaticParams() {
-  const directory = path.join(process.cwd(), 'src/contents');
+  const directory = path.join(process.cwd(), postsDirectory);
   const nestedSlugs = getNestedMDXPaths(directory);
   
   return nestedSlugs.map(({ slug }) => ({
@@ -142,7 +144,7 @@ function getNestedMDXPaths(dir: string): { slug: string }[] {
       const slug = filePath
         .replace(process.cwd(), '')
         .replace(/\.(md|mdx)$/, '')
-        .replace(/^\/src\/contents\//, '');
+        .replace(/^\/posts\//, '');
 
       paths.push({ slug });
     }

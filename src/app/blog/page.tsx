@@ -27,7 +27,7 @@ function getNestedBlogPosts(dir: string): { slug: string; }[] {
       const slug = filePath
         .replace(process.cwd(), '')
         .replace(/\.(md|mdx)$/, '')
-        .replace(/^\/src\/contents\//, '');
+        .replace(/^\/posts\//, '');
 
       const mdxContent = fs.readFileSync(filePath, 'utf-8');
       const { data } = matter(mdxContent);
@@ -46,7 +46,7 @@ function getNestedBlogPosts(dir: string): { slug: string; }[] {
 }
 
 export default function Blog() {
-  const blogLists: Post[] = getNestedBlogPosts(path.join(process.cwd(), 'src/contents'));
+  const blogLists: Post[] = getNestedBlogPosts(path.join(process.cwd(), 'posts/'));
 
   return (
     <>
