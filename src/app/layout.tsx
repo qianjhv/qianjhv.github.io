@@ -4,6 +4,7 @@ import "@/styles/globals.scss";
 import "katex/dist/katex.min.css";
 
 import { ThemesProviders } from "@/lib/ThemeProviders";
+import { PageMotion } from "@/lib/PageMotion";
 
 export const metadata: Metadata = {
   title: 'qianjh.me',
@@ -15,7 +16,9 @@ export default function RootLayout({ children }) {
     <html>
       <body>
         <ThemesProviders>
-          {children}
+          <PageMotion>
+            {children}
+          </PageMotion>
         </ThemesProviders>
       </body>
     </html>
