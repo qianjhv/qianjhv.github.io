@@ -7,6 +7,8 @@ import {ToggleThemes} from "@/lib/ThemeProviders"
 const maocao = Liu_Jian_Mao_Cao({
   weight: '400',
   subsets: ['latin'],
+  display: 'swap',
+  preload: true,
 });
 
 export default function Page() {
