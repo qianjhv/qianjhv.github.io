@@ -14,6 +14,9 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }) {
   return (
     <html>
+      <head>
+        <meta name="theme-color" />
+      </head>
       <body>
         <ThemesProviders>
           <PageMotion>
