@@ -1,15 +1,19 @@
 import Link from "next/link";
-import { Liu_Jian_Mao_Cao } from 'next/font/google';
+import localFont from 'next/font/local';
 
 import '@/styles/homepage.scss';
 import {ToggleThemes} from "@/lib/ThemeProviders"
- 
-const maocao = Liu_Jian_Mao_Cao({
-  weight: '400',
-  subsets: ['latin'],
-  display: 'swap',
-  preload: true,
+
+const Liu_Jian_Mao_Cao = localFont({
+  src: [{
+      path: '../fonts/liu_jian_mao_cao.woff2',
+      weight: '400',
+      style: 'normal',
+    }],
+    display: 'swap',
+    preload: true,
 });
+
 
 export default function Page() {
   return (
@@ -18,7 +22,7 @@ export default function Page() {
         <div className="theme">
           <ToggleThemes />
         </div>
-        <div className={`${maocao.className} contents`}>
+        <div className={`${Liu_Jian_Mao_Cao.className} contents`}>
           <div className="title">
             <h1>陋室铭</h1>
             <Link href="/blog" className="bloglink">Blog</Link>
