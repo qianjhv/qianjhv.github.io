@@ -1,210 +1,213 @@
 @reference "./tw-reference.scss";
 
 @layer utilities {
-	/* for markdown typography and stylies */
-	.mdx-typography-default {
-		font-size: 16px;
+  /* for markdown typography and stylies */
+  .mdx-typography-default {
+    font-size: 16px;
 
-		h1 {
-			margin-top: 1.5em;
-			/* margin-bottom: 1em; */
-			font-size: 2em;
-			line-height: 2em;
-			font-weight: 400;
-			/* text-align: center; */
-		}
-		h2 {
-			margin-top: 1.5em;
-			margin-bottom: 0.5em;
-			font-size: 1.8em;
-			line-height: 1.2em;
-			font-weight: 400;
+    h1 {
+      margin-top: 1.5em;
+      /* margin-bottom: 1em; */
+      font-size: 2em;
+      line-height: 2em;
+      font-weight: 400;
+      /* text-align: center; */
+    }
+    h2 {
+      margin-top: 1.5em;
+      margin-bottom: 0.5em;
+      font-size: 1.8em;
+      line-height: 1.2em;
+      font-weight: 400;
 
-			&::before {
-				margin-right: 10px;
-				content: '';
-				display: inline-block;
-				width: 3px;
-				height: calc(1.2em - 11px);
-				border-radius: 8px;
-				background-color: #5BC2E7;
-				transform: translateY(2px);
-			}
-		}
-		h3 {
-			margin-top: 1.5em;
-			margin-bottom: 0.5em;
-			line-height: 1em;
-			font-size: 1.5em;
-			font-weight: 300;
+      &::before {
+        margin-right: 10px;
+        content: "";
+        display: inline-block;
+        width: 3px;
+        height: calc(1.2em - 11px);
+        border-radius: 8px;
+        background-color: #5bc2e7;
+        transform: translateY(2px);
+      }
+    }
+    h3 {
+      margin-top: 1.5em;
+      margin-bottom: 0.5em;
+      line-height: 1em;
+      font-size: 1.5em;
+      font-weight: 300;
 
-			&::before {
-				margin-right: 10px;
-				content: '';
-				display: inline-block;
-				width: 3px;
-				height: calc(1.2em - 11px);
-				border-radius: 8px;
-				background-color: #5BC2E7;
-				transform: translateY(2px);
-			}
-		}
-		h4 {
-			margin-top: 1.5em;
-			margin-bottom: 0.5em;
-			line-height: 1em;
-			font-size: 1.2em;
-			font-weight: 300;
+      &::before {
+        margin-right: 10px;
+        content: "";
+        display: inline-block;
+        width: 3px;
+        height: calc(1.2em - 11px);
+        border-radius: 8px;
+        background-color: #5bc2e7;
+        transform: translateY(2px);
+      }
+    }
+    h4 {
+      margin-top: 1.5em;
+      margin-bottom: 0.5em;
+      line-height: 1em;
+      font-size: 1.2em;
+      font-weight: 300;
 
-			&::before {
-				margin-right: 10px;
-				content: '';
-				display: inline-block;
-				width: 3px;
-				height: calc(1.2em - 11px);
-				border-radius: 8px;
-				background-color: #5BC2E7;
-				transform: translateY(2px);
-			}
-		}
+      &::before {
+        margin-right: 10px;
+        content: "";
+        display: inline-block;
+        width: 3px;
+        height: calc(1.2em - 11px);
+        border-radius: 8px;
+        background-color: #5bc2e7;
+        transform: translateY(2px);
+      }
+    }
 
-		p {
-			margin-top: 1em;
-			line-height: 1.75;
-		}
+    p {
+      margin-top: 1em;
+      line-height: 1.75;
+    }
 
-		/*
-		b, strong {
-			font-weight: normal;
-			background-color: #5BC2E7;	
-		}
-		*/
+    /*
+    b, strong {
+      font-weight: normal;
+      background-color: #5BC2E7;	
+    }
+    */
 
-		ul, ol {
-			margin-top: 1.25em;
-			margin-bottom: 1.25em;
-			padding-left: 1.625em;
+    ul,
+    ol {
+      margin-top: 1.25em;
+      margin-bottom: 1.25em;
+      padding-left: 1.625em;
 
-			ul, ol {
-				margin: 0;
+      ul,
+      ol {
+        margin: 0;
 
-				ul, ol {
-					margin: 0;
+        ul,
+        ol {
+          margin: 0;
 
-					ul, ol {
-						margin: 0;
-					}
-				}
-			}
-		}
-		
-		li {
-			list-style: circle;
-		}
+          ul,
+          ol {
+            margin: 0;
+          }
+        }
+      }
+    }
 
-		em {
-			color: #f5a524;
-		}
+    li {
+      list-style: circle;
+    }
 
-		hr {
-			border: 1px solid hsla(232, calc(0.4* 80%), calc(64%), 0.2);
-			margin: 20px auto;
-		}
+    em {
+      color: #f5a524;
+    }
 
-		a {
-			color: var(--link-color);
-			text-decoration: underline;
+    hr {
+      border: 1px solid hsla(232, calc(0.4 * 80%), calc(64%), 0.2);
+      margin: 20px auto;
+    }
 
-			&:hover {
-				background-color: #eeeef3;
-			}
-		}
+    a {
+      color: var(--link-color);
+      text-decoration: underline;
 
-		img {
-			border-radius: 8px;
-		}
+      &:hover {
+        background-color: #eeeef3;
+      }
+    }
 
-		figure pre{
-			background-color: #f3f4f6;
-			padding: 12px 16px;
-			border-radius: 4px;
-		}
+    img {
+      border-radius: 8px;
+    }
 
-		code {
-			@apply font-mono;
-			background-color: rgb(240, 238, 240);
-			border-radius: 4px;
-			padding: 0.1em 0.25em;
-			color: #434344;
-		}
+    figure pre {
+      background-color: #f3f4f6;
+      padding: 12px 16px;
+      border-radius: 4px;
+    }
 
-		p code,
-		li code,
-		blockquote code,
-		em code,
-		b code,
-		strong code {
-			font-size: 0.8em;
-			vertical-align: middle;
-		}
+    code {
+      @apply font-mono;
+      background-color: rgb(240, 238, 240);
+      border-radius: 4px;
+      padding: 0.1em 0.25em;
+      color: #434344;
+    }
 
-		blockquote {
-			background-color: #f2f2f5;
-			border-radius: 4px;
-			padding-left: 8px;
-			color: #626161;
-			font-style: italic;
-		}
+    p code,
+    li code,
+    blockquote code,
+    em code,
+    b code,
+    strong code {
+      font-size: 0.8em;
+      vertical-align: middle;
+    }
 
-		table {
-			width: 100%;
-			border-collapse: collapse;
-			margin: 20px 0;
-			font-size: 16px;
-			text-align: center;
-		}
-		
-		table th,
-		table td {
-			border: 1px solid #ddd;
-			padding: 10px;
-		}
-		
-		table thead {
-			background-color: #f4f4f4;
-			font-weight: bold;
-		}
-		
-	}
+    blockquote {
+      background-color: #f2f2f5;
+      border-radius: 4px;
+      padding-left: 8px;
+      color: #626161;
+      font-style: italic;
+    }
 
-	.dark .mdx-typography-dark {
-		a:hover {
-			background-color: #626161;
-		}
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      font-size: 16px;
+      text-align: center;
+    }
 
-		code {
-			background-color: #393f56;
-			color: rgb(226, 223, 226);
-		}
+    table th,
+    table td {
+      border: 1px solid #ddd;
+      padding: 10px;
+    }
 
-		figure pre{
-			background-color: #393f56;
-		}
+    table thead {
+      background-color: #f4f4f4;
+      font-weight: bold;
+    }
+  }
 
-		blockquote {
-			background-color: #43495e;
-			color: rgb(231, 229, 229);
-		}
+  .dark .mdx-typography-dark {
+    a:hover {
+      background-color: #626161;
+    }
 
-		/*
-		b, strong {
-			background-color: #5BC2E7;
-		}
-		*/
-		
-		table thead {
-			background-color: #626161;
-			font-weight: bold;
-		}
-	}
+    code {
+      background-color: #393f56;
+      color: rgb(226, 223, 226);
+    }
+
+    figure pre {
+      background-color: #393f56;
+    }
+
+    blockquote {
+      background-color: #43495e;
+      color: rgb(231, 229, 229);
+    }
+
+    /*
+    b, strong {
+      background-color: #5BC2E7;
+    }
+    */
+
+    table thead {
+      background-color: #626161;
+      font-weight: bold;
+    }
+  }
 }

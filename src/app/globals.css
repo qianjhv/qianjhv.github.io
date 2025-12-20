@@ -1,40 +1,40 @@
 @import "tailwindcss";
 
 :root {
-	--background-color: #fafafa;
-	--text-color: #000000;
-	--link-color: #5BC2E7;		/* #002FA7 */
+  --background-color: #fafafa;
+  --text-color: #000000;
+  --link-color: #5bc2e7; /* #002FA7 */
 }
 
 body {
-	background-color: var(--background-color);
-	color: var(--text-color);
+  background-color: var(--background-color);
+  color: var(--text-color);
 }
 
-[class='dark'] {
-	--background-color: #303446;
-	--text-color: #e0e0e0;
-	--link-color: #5BC2E7;
+[class="dark"] {
+  --background-color: #303446;
+  --text-color: #e0e0e0;
+  --link-color: #5bc2e7;
 
-	/* dark code highlight */
-	code[data-theme],
-	code[data-theme] span {
-		color: var(--shiki-dark);
-		background-color: var(--shiki-dark-bg);
-	}
+  /* dark code highlight */
+  code[data-theme],
+  code[data-theme] span {
+    color: var(--shiki-dark);
+    background-color: var(--shiki-dark-bg);
+  }
 }
 
 a {
-  color: #5BC2E7;
+  color: #5bc2e7;
 }
 
 /* code highlight */
 figure pre {
   overflow-x: auto;
   position: relative;
-	margin: 1em 0;
-	font-size: 0.9em;
-	max-width: 100%;
+  margin: 1em 0;
+  font-size: 0.9em;
+  max-width: 100%;
 }
 
 code[data-theme],
@@ -44,26 +44,26 @@ code[data-theme] span {
 }
 
 code[data-theme] span[data-highlighted-line] {
-	background-color: rgba(200, 200, 255, 0.18) !important;
-  border-left: 2px solid #60A5FA;
+  background-color: rgba(200, 200, 255, 0.18) !important;
+  border-left: 2px solid #60a5fa;
   border-radius: 3px;
 }
 
 /* show code line numbers */
 pre code {
-	counter-reset: line;
+  counter-reset: line;
 }
 
 code > [data-line]::before {
-	counter-increment: line;
-	content: counter(line);
-	display: inline-block;
-	width: 1rem;
-	margin-right: 1rem;
-	text-align: right;
-	color: gray;
+  counter-increment: line;
+  content: counter(line);
+  display: inline-block;
+  width: 1rem;
+  margin-right: 1rem;
+  text-align: right;
+  color: gray;
 }
 
 code > [data-line] {
-	padding-left: 0.1rem;
+  padding-left: 0.1rem;
 }
