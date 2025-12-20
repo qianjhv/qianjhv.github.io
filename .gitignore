@@ -22,6 +22,7 @@ pnpm-debug.log*
 
 # obsidian
 .obsidian/
+.obsidian/*
 Untitled.md
 src/contents/.obsidian/
 posts/.obsidian/
