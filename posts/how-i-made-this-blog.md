@@ -222,7 +222,7 @@ a {
 
 ## markdown 排版
 
-利用 tailwindcss 的 typography 插件，可以对 markdown 进行排版。但是要使用自定义样式，需要在 tailwindcss 的配置文件中写入一堆样式配置，而且感觉也不怎么灵活度。所以可以利用 tailwindcss 的 `@layout` 对 markdown 进行排版，以及实现 `dark` 指令切换排版暗色模式，配合 sass，核心代码如下。
+利用 tailwindcss 的 typography 插件，可以对 markdown 进行排版。但是要使用自定义样式，需要在 tailwindcss 的配置文件中写入一堆样式配置，而且感觉也不怎么灵活。所以可以利用 tailwindcss 的 `@layout` 对 markdown 进行排版，以及实现 `dark` 指令切换排版暗色模式，配合 sass，核心代码如下。
 
 ```css
 // globals.scss
