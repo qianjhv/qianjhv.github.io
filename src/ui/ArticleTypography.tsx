@@ -1,3 +1,5 @@
+
+
 type ArticleData = {
   title: string;
   date?: string;
@@ -11,7 +13,7 @@ export default function ArticleTypography(
 ) {
 	return (
 		// <article className="prose dark:prose-invert max-w-[768px] mx-auto">
-		<article className="mdx-typography-default dark:mdx-typography-dark max-w-[768px] mx-auto">
+		<article className="mdx-typography-default dark:mdx-typography-dark max-w-3xl mx-auto">
 			<h1>{data.title}</h1>
 			
 			<div className="metadata">

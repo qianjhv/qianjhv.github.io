@@ -85,7 +85,7 @@ export default async function BlogPost({ params }: PageProps) {
   });
 
   return (
-    <div className='mdx-typography-default mdx-typography-dark max-w-[768px] mx-auto px-2'>
+    <div className='mdx-typography-default mdx-typography-dark max-w-3xl mx-auto px-2'>
       <div className='my-10'>
         <h1>{data.title}</h1>
         <time className='text-gray-400 font-mono'>{data.date}</time>

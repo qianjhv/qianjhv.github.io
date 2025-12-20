@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 
-import "@/styles/globals.scss";
+import './globals.css';
+import '@/styles/article-typography.scss';
 import "katex/dist/katex.min.css";
 
 import { ThemesProviders } from "@/lib/ThemeProviders";
