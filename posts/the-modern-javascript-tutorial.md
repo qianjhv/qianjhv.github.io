@@ -1,6 +1,6 @@
 ---
-title: 现代 JavaScript 教程笔记
-date: 2025-1-5
+title: "现代 JavaScript 教程笔记"
+date: "2025-1-5"
 describtion: 记录学习 The Modern JavaScript Tutorial 中的一些重点，难点。
 tags:
   - web

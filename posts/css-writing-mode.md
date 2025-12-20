@@ -1,6 +1,6 @@
 ---
-title: 使用 writing-mode 实现不同方向的文本
-date: 2025-1-10
+title: "使用 writing-mode 实现不同方向的文本"
+date: "2025-1-10"
 describtion: 在 web 中使用 writing-mode 处理不同方向的文本遇到的问题
 tags:
   - web
