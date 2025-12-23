@@ -3,7 +3,7 @@
 @layer utilities {
   /* for markdown typography and stylies */
   .mdx-typography-default {
-    font-size: 16px;
+    font-size: 15px;
 
     h1 {
       margin-top: 1.5em;
@@ -102,8 +102,12 @@
       }
     }
 
-    li {
+    ul li {
       list-style: circle;
+    }
+
+    ol li {
+      list-style: decimal;
     }
 
     em {
@@ -148,7 +152,7 @@
     em code,
     b code,
     strong code {
-      font-size: 0.8em;
+      font-size: 0.95em;
       vertical-align: middle;
     }
 
@@ -160,12 +164,22 @@
       font-style: italic;
     }
 
+    /* katex */
+    .katex {
+      font-size: 1.1em !important;
+      color: #46484d;
+      overflow-x: scroll;
+      overflow-y: hidden;
+    }
+
     table {
-      width: 100%;
       border-collapse: collapse;
       margin: 20px 0;
-      font-size: 16px;
+      font-size: 14px;
       text-align: center;
+      display: block;
+      width: 100%;
+      overflow-x: auto;
     }
 
     table th,
@@ -206,8 +220,14 @@
     */
 
     table thead {
-      background-color: #626161;
+      background-color: #272d3a;
       font-weight: bold;
+    }
+
+    /* katex */
+    .katex {
+      font-size: 1.1em !important;
+      color: #cad5e7;
     }
   }
 }

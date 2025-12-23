@@ -339,7 +339,7 @@ const { content: compiledContent } = await compileMDX({
 });
 
 return (
-  <main className='mdx-typography-default dark:mdx-typography-dark max-w-[768px] mx-auto'>
+  <main className='mdx-typography-default dark:mdx-typography-dark max-w-3xl mx-auto'>
     {compiledContent}
   </main>
 );
