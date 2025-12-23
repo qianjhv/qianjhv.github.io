@@ -58,20 +58,24 @@ export default function Blog() {
         </p>
       </aside>
       <ul>
-        {blogLists.map((blog) => (
+        {[...blogLists].sort((a, b) => {
+            const timeA = a.date ? new Date(a.date).getTime() : 0;
+            const timeB = b.date ? new Date(b.date).getTime() : 0;
+            return timeB - timeA;
+        }).map((blog) => (
           <li key={blog.slug} className="text-3xl font-bold my-5">
             <Link href={`/blog/${blog.slug}`}>
               {blog.title || blog.slug}
             </Link>
+
             <p className="font-serif text-base text-gray-400 font-normal mt-2">
               <time>
-                {
-                  blog.date && new Date(blog.date).toLocaleDateString('en-US', {
+                {blog.date &&
+                  new Date(blog.date).toLocaleDateString('en-US', {
                     year: 'numeric',
                     month: 'long',
-                    day: 'numeric'
-                  })
-                }
+                    day: 'numeric',
+                })}
               </time>
             </p>
           </li>
