@@ -414,4 +414,6 @@ NEXT_PUBLIC_GISCUS_CATEGORY=Announcements
 NEXT_PUBLIC_GISCUS_CATEGORY_ID=YOUR_CATEGORY_ID
 ```
 
-## Stay tuned...
+## 更多功能
+
+其他一些基本的功能，不再一一记录。如文本搜索、标签页面、RSS、搜索引擎优化等等。。。

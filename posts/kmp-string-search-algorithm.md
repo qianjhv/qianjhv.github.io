@@ -262,7 +262,20 @@ Border 的链式结构：由 Border Lemma，所有 border 形成一个链：
 π[i] → π[π[i]-1] → π[π[π[i]-1]-1] → ... → 0
 ```
 
-## 前缀函数的应用
+## 前缀函数的在 KMP 算法中应用
 
+最简单的就是使用模式串和主串构建一个字符串，然后算出这个字符串的前缀函数结果。最后从大于模式串的位置开始找等于模式串大小的下标，没有则返回 -1。
 
+```c++
+vector<int> find_occurrences(string text, string pattern) {
+  string cur = pattern + '#' + text;
+  int sz1 = text.size(), sz2 = pattern.size();
+  vector<int> v;
+  vector<int> lps = prefix_function(cur);
+  for (int i = sz2 + 1; i <= sz1 + sz2; i++) {
+    if (lps[i] == sz2) v.push_back(i - 2 * sz2);
+  }
+  return v;
+}
+```
 
