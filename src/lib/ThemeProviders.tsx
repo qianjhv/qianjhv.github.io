@@ -31,11 +31,11 @@ const darkIcon = (
 );
 
 export function ThemesProviders({ children }) {
-  const [mounted, setMounted] = useState(false);
+  // const [mounted, setMounted] = useState(false);
 
-  useEffect(() => setMounted(true), []);
+  // useEffect(() => setMounted(true), []);
 
-  if (!mounted) return <>{children}</>;
+  // if (!mounted) return <>{children}</>;
 
   return (
     <ThemeProvider attribute="class" defaultTheme="system">
@@ -67,16 +67,42 @@ function ThemeColorSync() {
 
 export const ToggleThemes = () => {
   const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return (
+      <button
+        style={{ background: 'none', border: 'none', cursor: 'pointer' }}
+        aria-label="Change theme"
+      >
+        {systemIcon}
+      </button>
+    );
+  }
+
   const nextTheme =
-    theme === 'system' ? 'light' : theme === 'light' ? 'dark' : 'system';
+    theme === 'system'
+      ? 'light'
+      : theme === 'light'
+        ? 'dark'
+        : 'system';
+
   const currentIcon =
-    theme === 'dark' ? darkIcon : theme === 'light' ? lightIcon : systemIcon;
+    theme === 'dark'
+      ? darkIcon
+      : theme === 'light'
+        ? lightIcon
+        : systemIcon;
 
   return (
     <button
       onClick={() => setTheme(nextTheme)}
       style={{ background: 'none', border: 'none', cursor: 'pointer' }}
-      title={`${nextTheme}`}
+      title={nextTheme}
     >
       {currentIcon}
     </button>

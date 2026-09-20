@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html>
+    <html suppressHydrationWarning>
       <head>
         <meta name="theme-color" />
       </head>

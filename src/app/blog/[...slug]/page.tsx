@@ -10,7 +10,7 @@ import rehypePrettyCode from "rehype-pretty-code";
 import rehypeMinifyWhitespace from 'rehype-minify-whitespace';
 import rehypeMinifyCssStyle from 'rehype-minify-css-style';
 
-import { useMDXComponents } from 'mdx-components';
+import { useMDXComponents } from '@/mdx-components';
 import { notFound } from 'next/navigation';
 import Giscus from '@/lib/Giscus';
 
@@ -53,7 +53,10 @@ export default async function BlogPost({ params }: PageProps) {
     return notFound();
   }
   
-  const fileContent = fs.readFileSync(filePath, 'utf-8');
+  const fileContent = fs.readFileSync(
+    /*turbopackIgnore: true*/ filePath,
+    'utf-8',
+  );
   const { content: mdxContent, data } = matter(fileContent);
   const { content: compiledContent } = await compileMDX({
     source: mdxContent,
@@ -118,7 +121,10 @@ export async function generateMetadata({ params }: MetadataProps) {
       description: 'The requested blog post does not exist.',
     }
   };
-  const mdxContent = fs.readFileSync(filePath, 'utf-8');
+  const mdxContent = fs.readFileSync(
+    /*turbopackIgnore: true*/ filePath,
+    'utf-8',
+  );
   const { data } = matter(mdxContent);
   return {
     title: data.title || slugArray.at(-1) || slugArray || 'Blog post',
